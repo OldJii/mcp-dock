@@ -1,0 +1,108 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/OldJii/mcp-dock/main/schemas/skill.schema.json",
+  "title": "AI Agent Skill Schema",
+  "description": "Schema for community-contributed AI Agent Skills (SKILL.md files)",
+  "type": "object",
+  "required": ["name", "description", "author", "repoUrl", "skillPath"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique skill name (typically the folder name or skill identifier)",
+      "pattern": "^[a-zA-Z][a-zA-Z0-9_-]*$",
+      "maxLength": 100,
+      "examples": ["create-pr", "update-docs", "code-review"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the skill's functionality and when to use it",
+      "maxLength": 1000
+    },
+    "author": {
+      "type": "string",
+      "description": "Author or organization name (GitHub username or org)",
+      "maxLength": 100,
+      "examples": ["vercel", "anthropic", "github"]
+    },
+    "repoUrl": {
+      "type": "string",
+      "description": "GitHub repository URL containing the skill",
+      "format": "uri",
+      "pattern": "^https://github\\.com/[^/]+/[^/]+$",
+      "examples": ["https://github.com/vercel/next.js"]
+    },
+    "skillPath": {
+      "type": "string",
+      "description": "Path to the SKILL.md file within the repository",
+      "pattern": "^[a-zA-Z0-9._/-]+$",
+      "examples": [".claude/skills/create-pr", ".cursor/skills/code-review"]
+    },
+    "branch": {
+      "type": "string",
+      "description": "Repository branch (defaults to main/master)",
+      "default": "main",
+      "examples": ["main", "master", "develop"]
+    },
+    "iconUrl": {
+      "type": ["string", "null"],
+      "description": "URL to the skill's icon (PNG/SVG, recommended 128x128)",
+      "format": "uri"
+    },
+    "tags": {
+      "type": "array",
+      "description": "Categorization tags for the skill",
+      "items": {
+        "type": "string",
+        "maxLength": 30
+      },
+      "maxItems": 10,
+      "uniqueItems": true,
+      "examples": [["coding", "documentation", "testing"]]
+    },
+    "category": {
+      "type": "string",
+      "description": "Primary category for the skill",
+      "enum": [
+        "Coding",
+        "Testing",
+        "DevOps",
+        "Data & Analytics",
+        "Security",
+        "Content & Writing",
+        "Productivity",
+        "Design"
+      ]
+    },
+    "allowedTools": {
+      "type": "array",
+      "description": "List of tools the skill is allowed to use (from SKILL.md frontmatter)",
+      "items": {
+        "type": "string"
+      },
+      "examples": [["Read", "Write", "Shell", "Grep"]]
+    },
+    "files": {
+      "type": "array",
+      "description": "Additional files included with the skill",
+      "items": {
+        "type": "object",
+        "required": ["name", "path"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "File name"
+          },
+          "path": {
+            "type": "string",
+            "description": "Relative path within skill directory"
+          },
+          "size": {
+            "type": "string",
+            "description": "Human-readable file size"
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

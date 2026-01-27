@@ -1,0 +1,37 @@
+{
+  "name": "io.github.your-username/your-mcp-server",
+  "displayName": "Your MCP Server Name",
+  "description": "A brief description of what your MCP Server does",
+  "version": "1.0.0",
+  "iconUrl": null,
+  "tags": ["category1", "category2"],
+  "author": "your-username",
+  "repository": {
+    "url": "https://github.com/your-username/your-mcp-server",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@your-scope/your-mcp-server",
+      "version": "1.0.0",
+      "runtimeHint": "npx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "API_KEY",
+          "description": "Your API key for authentication",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string",
+          "placeholder": "sk-xxxx..."
+        }
+      ],
+      "packageArguments": [],
+      "runtimeArguments": []
+    }
+  ],
+  "remotes": []
+}

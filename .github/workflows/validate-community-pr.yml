@@ -1,0 +1,130 @@
+# ============================================================================
+# MCP Dock 社区贡献 PR 自动校验
+# ============================================================================
+# 触发条件：PR 提交到 community-registry/** 目录
+# 功能：使用 ajv-cli 校验提交的 JSON 文件是否符合 Schema 规范
+# ============================================================================
+
+name: Validate Community PR
+
+on:
+  pull_request:
+    paths:
+      - 'community-registry/**/*.json'
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate:
+    name: Validate JSON Schema
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install ajv-cli
+        run: npm install -g ajv-cli ajv-formats
+
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@v44
+        with:
+          files: |
+            community-registry/**/*.json
+
+      - name: Validate Server JSON files
+        if: steps.changed-files.outputs.any_changed == 'true'
+        run: |
+          echo "🔍 Validating changed JSON files..."
+          
+          ERRORS=0
+          
+          for file in ${{ steps.changed-files.outputs.all_changed_files }}; do
+            echo "📄 Checking: $file"
+            
+            # 根据目录选择对应的 Schema
+            if [[ "$file" == community-registry/servers/* ]]; then
+              SCHEMA="schemas/server.schema.json"
+              TYPE="Server"
+            elif [[ "$file" == community-registry/skills/* ]]; then
+              SCHEMA="schemas/skill.schema.json"
+              TYPE="Skill"
+            else
+              echo "  ⚠️  Skipping: Unknown directory"
+              continue
+            fi
+            
+            # 跳过模板文件
+            if [[ "$file" == *"_template.json" ]]; then
+              echo "  ℹ️  Skipping template file"
+              continue
+            fi
+            
+            # 校验 JSON 格式
+            if ! python3 -c "import json; json.load(open('$file'))"; then
+              echo "  ❌ Invalid JSON syntax"
+              ERRORS=$((ERRORS + 1))
+              continue
+            fi
+            
+            # 使用 ajv-cli 校验 Schema
+            if ajv validate -s "$SCHEMA" -d "$file" --spec=draft2019 --all-errors; then
+              echo "  ✅ Valid $TYPE definition"
+            else
+              echo "  ❌ Schema validation failed"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done
+          
+          if [ $ERRORS -gt 0 ]; then
+            echo ""
+            echo "❌ Validation failed with $ERRORS error(s)"
+            echo ""
+            echo "📚 Please ensure your JSON files conform to the schema:"
+            echo "   - Servers: schemas/server.schema.json"
+            echo "   - Skills: schemas/skill.schema.json"
+            echo ""
+            echo "💡 Tips:"
+            echo "   - Use the _template.json files as a starting point"
+            echo "   - Run 'npx mcp-publisher init' for servers"
+            exit 1
+          fi
+          
+          echo ""
+          echo "✅ All validations passed!"
+
+      - name: Comment on PR (Success)
+        if: success() && steps.changed-files.outputs.any_changed == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ **Schema Validation Passed**\n\nAll submitted JSON files conform to the MCP Dock schema specification. Thank you for your contribution!'
+            })
+
+      - name: Comment on PR (Failure)
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '❌ **Schema Validation Failed**\n\nPlease check the workflow logs for details and ensure your JSON files conform to the schema specification.\n\n📚 Reference:\n- [Server Schema](./schemas/server.schema.json)\n- [Skill Schema](./schemas/skill.schema.json)\n\n💡 Use the `_template.json` files as a starting point.'
+            })
