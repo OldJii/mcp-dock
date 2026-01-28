@@ -21,8 +21,8 @@
 
 ## 功能特性
 
-- **MCP 商店** - 浏览和搜索来自 Official Registry 和 Smithery 的 300+ MCP Server
-- **Skills 商店** - 发现 8000+ AI Skills，适用于 Cursor、Claude Code、Gemini CLI、Codex CLI
+- **MCP 商店** - 浏览和搜索来自 Official Registry 和 Smithery 的 1000+ MCP Server
+- **Skills 商店** - 发现 3000+ AI Skills，适用于 Cursor、Claude Code、Gemini CLI、Codex CLI
 - **一键安装** - 自动配置到 Cursor、Claude Code、Gemini CLI、Codex CLI、Windsurf、Zed、TRAE
 - **MCP Inspector** - 交互式调试工具，测试 MCP Server 的 Tools
 - **配置管理** - 统一管理所有客户端的 MCP 配置
