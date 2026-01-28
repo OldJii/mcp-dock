@@ -21,8 +21,9 @@
 
 ## 功能特性
 
-- **MCP 商店** - 浏览和搜索来自 Official Registry 和 Smithery 的 MCP Server
-- **一键安装** - 自动配置到 Cursor、Claude Desktop、Windsurf、Zed、TRAE
+- **MCP 商店** - 浏览和搜索来自 Official Registry 和 Smithery 的 300+ MCP Server
+- **Skills 商店** - 发现 8000+ AI Skills，适用于 Cursor、Claude Code、Gemini CLI、Codex CLI
+- **一键安装** - 自动配置到 Cursor、Claude Code、Gemini CLI、Codex CLI、Windsurf、Zed、TRAE
 - **MCP Inspector** - 交互式调试工具，测试 MCP Server 的 Tools
 - **配置管理** - 统一管理所有客户端的 MCP 配置
 - **多端同步** - 将 MCP 配置同步到多个客户端
@@ -62,13 +63,26 @@ brew upgrade --cask mcp-dock
 
 ## 支持的客户端
 
+### MCP 客户端
+
 | 客户端 | 状态 |
 |--------|------|
 | Cursor | 支持 |
-| Claude Desktop | 支持 |
+| Claude Code | 支持 |
+| Gemini CLI | 支持 |
+| Codex CLI | 支持 |
 | Windsurf | 支持 |
 | Zed | 支持 |
 | TRAE | 支持 |
+
+### Skills 客户端
+
+| 客户端 | 状态 |
+|--------|------|
+| Cursor | 支持 |
+| Claude Code | 支持 |
+| Gemini CLI | 支持 |
+| Codex CLI | 支持 |
 
 ## 数据源
 
@@ -117,10 +131,7 @@ MCP Dock 支持两个数据源：
 
 ## 许可证
 
-本项目采用双重许可模式：
-
 - **软件**（安装包、可执行文件）：专有软件 - 保留所有权利
-- **数据**（`registry/*.json`）：[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh-hans)
 
 详见 [LICENSE](./LICENSE)。
 

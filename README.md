@@ -21,8 +21,9 @@
 
 ## Features
 
-- **MCP Store** - Browse and search MCP Servers from Official Registry and Smithery
-- **One-Click Install** - Auto-configure to Cursor, Claude Desktop, Windsurf, Zed, TRAE
+- **MCP Store** - Browse and search 300+ MCP Servers from Official Registry and Smithery
+- **Skills Store** - Discover 8000+ AI Skills for Cursor, Claude Code, Gemini CLI, and Codex CLI
+- **One-Click Install** - Auto-configure to Cursor, Claude Code, Gemini CLI, Codex CLI, Windsurf, Zed, TRAE
 - **MCP Inspector** - Interactive debugging tool for testing MCP Server tools
 - **Config Management** - Unified management of MCP configurations across all clients
 - **Multi-Client Sync** - Sync MCP configurations to multiple clients
@@ -62,13 +63,26 @@ brew upgrade --cask mcp-dock
 
 ## Supported Clients
 
+### MCP Clients
+
 | Client | Status |
 |--------|--------|
 | Cursor | Supported |
-| Claude Desktop | Supported |
+| Claude Code | Supported |
+| Gemini CLI | Supported |
+| Codex CLI | Supported |
 | Windsurf | Supported |
 | Zed | Supported |
 | TRAE | Supported |
+
+### Skills Clients
+
+| Client | Status |
+|--------|--------|
+| Cursor | Supported |
+| Claude Code | Supported |
+| Gemini CLI | Supported |
+| Codex CLI | Supported |
 
 ## Data Sources
 
@@ -117,10 +131,7 @@ Internet is required for loading the MCP list. Installed MCP configurations are 
 
 ## License
 
-This project uses a dual license model:
-
 - **Software** (installers, executables): Proprietary - All rights reserved
-- **Data** (`registry/*.json`): [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 See [LICENSE](./LICENSE) for details.
 
