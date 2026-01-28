@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Temp files
+*.log
+*.tmp
+
+# Release binaries (use GitHub Releases instead)
+release/

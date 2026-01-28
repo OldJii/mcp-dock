@@ -1,0 +1,271 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/OldJii/mcp-dock/main/schemas/server.schema.json",
+  "title": "MCP Server Schema",
+  "description": "Schema for community-contributed MCP Server definitions, compatible with official mcp-publisher specification",
+  "type": "object",
+  "required": ["name", "description", "version", "packages"],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Unique identifier in format: io.github.{user}/{project} or io.{domain}/{project}",
+      "pattern": "^[a-z][a-z0-9._-]*/[a-z][a-z0-9._-]*$",
+      "examples": ["io.github.user/mcp-server", "io.anthropic/claude-mcp"]
+    },
+    "displayName": {
+      "type": "string",
+      "description": "Human-readable display name for the MCP Server",
+      "maxLength": 100,
+      "examples": ["Context7", "GitHub MCP Server"]
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the MCP Server functionality",
+      "maxLength": 500
+    },
+    "version": {
+      "type": "string",
+      "description": "Semantic version of the MCP Server",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+(-[a-zA-Z0-9.-]+)?(\\+[a-zA-Z0-9.-]+)?$",
+      "examples": ["1.0.0", "2.1.3-beta.1"]
+    },
+    "iconUrl": {
+      "type": ["string", "null"],
+      "description": "URL to the server's icon (PNG/SVG, recommended 128x128)",
+      "format": "uri",
+      "examples": ["https://example.com/icon.png"]
+    },
+    "tags": {
+      "type": "array",
+      "description": "Categorization tags for the MCP Server (UI display)",
+      "items": {
+        "type": "string",
+        "maxLength": 30
+      },
+      "maxItems": 10,
+      "uniqueItems": true,
+      "examples": [["database", "sql", "postgresql"]]
+    },
+    "author": {
+      "type": "string",
+      "description": "Author or organization name",
+      "maxLength": 100
+    },
+    "repository": {
+      "type": "object",
+      "description": "Source code repository information",
+      "properties": {
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Repository URL"
+        },
+        "source": {
+          "type": "string",
+          "enum": ["github", "gitlab", "bitbucket", "other"],
+          "default": "github"
+        },
+        "subfolder": {
+          "type": "string",
+          "description": "Path to MCP Server if not in repository root"
+        }
+      },
+      "required": ["url"]
+    },
+    "packages": {
+      "type": "array",
+      "description": "Installation packages for the MCP Server",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["registryType", "identifier"],
+        "properties": {
+          "registryType": {
+            "type": "string",
+            "enum": ["npm", "pypi", "oci"],
+            "description": "Package registry type: npm (Node.js), pypi (Python), oci (Docker)"
+          },
+          "identifier": {
+            "type": "string",
+            "description": "Package identifier in the registry",
+            "examples": ["@upstash/context7-mcp", "mcp-server-name", "ghcr.io/user/mcp-server"]
+          },
+          "version": {
+            "type": "string",
+            "description": "Package version (optional, defaults to latest)"
+          },
+          "runtimeHint": {
+            "type": "string",
+            "enum": ["npx", "uvx", "docker"],
+            "description": "Recommended runtime command"
+          },
+          "transport": {
+            "type": "object",
+            "description": "Transport configuration",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["stdio", "sse", "streamable-http"],
+                "default": "stdio"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri",
+                "description": "URL for SSE/HTTP transports"
+              },
+              "headers": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "value": { "type": "string" },
+                    "isSecret": { "type": "boolean" }
+                  }
+                }
+              }
+            }
+          },
+          "environmentVariables": {
+            "type": "array",
+            "description": "Environment variables required by the MCP Server",
+            "items": {
+              "type": "object",
+              "required": ["name"],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Environment variable name",
+                  "pattern": "^[A-Z][A-Z0-9_]*$",
+                  "examples": ["API_KEY", "DATABASE_URL"]
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Description of the variable's purpose"
+                },
+                "isRequired": {
+                  "type": "boolean",
+                  "description": "Whether this variable is required",
+                  "default": false
+                },
+                "isSecret": {
+                  "type": "boolean",
+                  "description": "Whether this is a sensitive value (API keys, passwords)",
+                  "default": false
+                },
+                "default": {
+                  "type": "string",
+                  "description": "Default value if not provided"
+                },
+                "choices": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "description": "Allowed values (for enum-like variables)"
+                },
+                "format": {
+                  "type": "string",
+                  "description": "Expected format hint (string, number, url, path, etc.)"
+                },
+                "placeholder": {
+                  "type": "string",
+                  "description": "Placeholder text for UI input"
+                }
+              }
+            }
+          },
+          "packageArguments": {
+            "type": "array",
+            "description": "Command-line arguments for the package",
+            "items": {
+              "type": "object",
+              "required": ["name", "type"],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Argument name"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": ["positional", "flag"],
+                  "description": "Argument type"
+                },
+                "isRequired": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "isRepeated": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "isSecret": {
+                  "type": "boolean",
+                  "default": false
+                },
+                "default": {
+                  "type": "string"
+                },
+                "choices": {
+                  "type": "array",
+                  "items": { "type": "string" }
+                },
+                "format": {
+                  "type": "string"
+                },
+                "placeholder": {
+                  "type": "string"
+                },
+                "valueHint": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "runtimeArguments": {
+            "type": "array",
+            "description": "Arguments passed to the runtime (npx, uvx, docker)",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "value": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "remotes": {
+      "type": "array",
+      "description": "Remote server endpoints (for hosted MCP Servers)",
+      "items": {
+        "type": "object",
+        "required": ["type", "url"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": ["stdio", "sse", "streamable-http"]
+          },
+          "url": {
+            "type": "string",
+            "format": "uri"
+          },
+          "headers": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": { "type": "string" },
+                "value": { "type": "string" },
+                "isSecret": { "type": "boolean" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

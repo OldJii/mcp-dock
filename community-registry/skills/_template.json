@@ -1,0 +1,13 @@
+{
+  "name": "your-skill-name",
+  "description": "Describe when this skill should be used and what it does. Be specific about triggers (e.g., 'Use when user asks to create a PR' or 'Use when working with database migrations').",
+  "author": "your-username",
+  "repoUrl": "https://github.com/your-username/your-repo",
+  "skillPath": ".claude/skills/your-skill-name",
+  "branch": "main",
+  "iconUrl": null,
+  "tags": ["coding", "automation"],
+  "category": "Coding",
+  "allowedTools": ["Read", "Write", "Shell", "Grep"],
+  "files": []
+}

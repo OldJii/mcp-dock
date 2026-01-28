@@ -1,0 +1,49 @@
+# License
+
+This project uses a dual license model.
+
+## Software License (Proprietary)
+
+Copyright (c) 2024-2026 MCP Dock Team. All rights reserved.
+
+The software components of MCP Dock, including but not limited to:
+- Application installers (.dmg, .exe, .AppImage, .deb)
+- Compiled executables and binaries
+- Source code (in mcp-dock-core repository)
+
+Are proprietary software. You may:
+- Download and use the software for personal, non-commercial purposes
+- Share the official download links
+
+You may NOT:
+- Modify, reverse engineer, or create derivative works
+- Redistribute the software or any modified versions
+- Use the software for commercial purposes without explicit permission
+- Remove or alter any proprietary notices
+
+## Data License (CC BY-NC-SA 4.0)
+
+The data files in this repository, specifically:
+- `registry/official/*.json`
+- `registry/smithery/*.json`
+
+Are licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+
+You are free to:
+- Share - copy and redistribute the material in any medium or format
+- Adapt - remix, transform, and build upon the material
+
+Under the following terms:
+- Attribution - You must give appropriate credit, provide a link to the license, and indicate if changes were made.
+- NonCommercial - You may not use the material for commercial purposes.
+- ShareAlike - If you remix, transform, or build upon the material, you must distribute your contributions under the same license as the original.
+
+Full license text: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+
+## Third-Party Credits
+
+MCP Dock includes data from:
+- Model Context Protocol Official Registry (https://modelcontextprotocol.io/)
+- Smithery.ai (https://smithery.ai/)
+
+These data sources retain their original licenses and terms of use.
