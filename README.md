@@ -21,8 +21,8 @@
 
 ## Features
 
-- **MCP Store** - Browse and search 300+ MCP Servers from Official Registry and Smithery
-- **Skills Store** - Discover 8000+ AI Skills for Cursor, Claude Code, Gemini CLI, and Codex CLI
+- **MCP Store** - Browse and search 1000+ MCP Servers from Official Registry and Smithery
+- **Skills Store** - Discover 3000+ AI Skills for Cursor, Claude Code, Gemini CLI, and Codex CLI
 - **One-Click Install** - Auto-configure to Cursor, Claude Code, Gemini CLI, Codex CLI, Windsurf, Zed, TRAE
 - **MCP Inspector** - Interactive debugging tool for testing MCP Server tools
 - **Config Management** - Unified management of MCP configurations across all clients
