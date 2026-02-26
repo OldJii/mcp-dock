@@ -1,0 +1,139 @@
+{
+  "name": "io.github.clickhouse/mcp-clickhouse",
+  "displayName": "ClickHouse MCP Server",
+  "description": "An MCP server for querying ClickHouse and chDB with read-only defaults and optional write access.",
+  "version": "0.2.0",
+  "iconUrl": null,
+  "tags": ["database", "sql", "clickhouse", "analytics"],
+  "author": "ClickHouse",
+  "repository": {
+    "url": "https://github.com/ClickHouse/mcp-clickhouse",
+    "source": "github"
+  },
+  "packages": [
+    {
+      "registryType": "pypi",
+      "identifier": "mcp-clickhouse",
+      "version": "0.2.0",
+      "runtimeHint": "uvx",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "CLICKHOUSE_HOST",
+          "description": "Hostname of your ClickHouse server",
+          "isRequired": true,
+          "isSecret": false,
+          "format": "string",
+          "placeholder": "localhost"
+        },
+        {
+          "name": "CLICKHOUSE_USER",
+          "description": "Username for ClickHouse authentication",
+          "isRequired": true,
+          "isSecret": false,
+          "format": "string",
+          "placeholder": "default"
+        },
+        {
+          "name": "CLICKHOUSE_PASSWORD",
+          "description": "Password for ClickHouse authentication",
+          "isRequired": true,
+          "isSecret": true,
+          "format": "string",
+          "placeholder": "clickhouse"
+        },
+        {
+          "name": "CLICKHOUSE_PORT",
+          "description": "ClickHouse HTTP(S) port",
+          "isRequired": false,
+          "isSecret": false,
+          "default": "8443",
+          "format": "number",
+          "placeholder": "8443"
+        },
+        {
+          "name": "CLICKHOUSE_SECURE",
+          "description": "Enable HTTPS for ClickHouse connection",
+          "isRequired": false,
+          "isSecret": false,
+          "default": "true",
+          "choices": ["true", "false"],
+          "format": "boolean",
+          "placeholder": "true"
+        },
+        {
+          "name": "CLICKHOUSE_VERIFY",
+          "description": "Verify TLS certificates",
+          "isRequired": false,
+          "isSecret": false,
+          "default": "true",
+          "choices": ["true", "false"],
+          "format": "boolean",
+          "placeholder": "true"
+        },
+        {
+          "name": "CLICKHOUSE_DATABASE",
+          "description": "Default database to use",
+          "isRequired": false,
+          "isSecret": false,
+          "format": "string",
+          "placeholder": "default"
+        },
+        {
+          "name": "CLICKHOUSE_ENABLED",
+          "description": "Enable or disable ClickHouse tools",
+          "isRequired": false,
+          "isSecret": false,
+          "default": "true",
+          "choices": ["true", "false"],
+          "format": "boolean",
+          "placeholder": "true"
+        },
+        {
+          "name": "CHDB_ENABLED",
+          "description": "Enable or disable embedded chDB tools",
+          "isRequired": false,
+          "isSecret": false,
+          "default": "false",
+          "choices": ["true", "false"],
+          "format": "boolean",
+          "placeholder": "false"
+        },
+        {
+          "name": "CHDB_DATA_PATH",
+          "description": "Data path for chDB, or :memory: for in-memory mode",
+          "isRequired": false,
+          "isSecret": false,
+          "default": ":memory:",
+          "format": "path",
+          "placeholder": ":memory:"
+        },
+        {
+          "name": "CLICKHOUSE_ALLOW_WRITE_ACCESS",
+          "description": "Allow write and DDL queries",
+          "isRequired": false,
+          "isSecret": false,
+          "default": "false",
+          "choices": ["true", "false"],
+          "format": "boolean",
+          "placeholder": "false"
+        },
+        {
+          "name": "CLICKHOUSE_ALLOW_DROP",
+          "description": "Allow destructive DROP and TRUNCATE operations (requires write access)",
+          "isRequired": false,
+          "isSecret": false,
+          "default": "false",
+          "choices": ["true", "false"],
+          "format": "boolean",
+          "placeholder": "false"
+        }
+      ],
+      "packageArguments": [],
+      "runtimeArguments": []
+    }
+  ],
+  "remotes": []
+}
