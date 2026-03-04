@@ -22,8 +22,9 @@
 ## Features
 
 - **MCP Store** - Browse and search 1000+ MCP Servers from Official Registry and Smithery
-- **Skills Store** - Discover 3000+ AI Skills for Cursor, Claude Code, Gemini CLI, and Codex CLI
-- **One-Click Install** - Auto-configure to Cursor, Claude Code, Gemini CLI, Codex CLI, Windsurf, Zed, TRAE
+- **Skills Store** - Discover 3000+ AI Skills for Cursor, Claude Code, Gemini CLI, Codex CLI, and Opencode
+- **One-Click Install** - Auto-configure to Cursor, Claude Code, Gemini CLI, Codex CLI, Windsurf, Zed, TRAE, Opencode
+- **Agent Skills Standard** - Support for `~/.agents/skills/` unified standard ([skills.sh](https://skills.sh/))
 - **MCP Inspector** - Interactive debugging tool for testing MCP Server tools
 - **Config Management** - Unified management of MCP configurations across all clients
 - **Multi-Client Sync** - Sync MCP configurations to multiple clients
@@ -74,6 +75,7 @@ brew upgrade --cask mcp-dock
 | Windsurf | Supported |
 | Zed | Supported |
 | TRAE | Supported |
+| Opencode | Supported |
 
 ### Skills Clients
 
@@ -83,6 +85,8 @@ brew upgrade --cask mcp-dock
 | Claude Code | Supported |
 | Gemini CLI | Supported |
 | Codex CLI | Supported |
+| Opencode | Supported |
+| Agent Skills (.agents) | Supported |
 
 ## Data Sources
 
