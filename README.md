@@ -21,9 +21,9 @@
 
 ## Features
 
-- **MCP Store** - Browse and search 1000+ MCP Servers from Official Registry and Smithery
-- **Skills Store** - Discover 3000+ AI Skills for Cursor, Claude Code, Gemini CLI, Codex CLI, and Opencode
-- **One-Click Install** - Auto-configure to Cursor, Claude Code, Gemini CLI, Codex CLI, Windsurf, Zed, TRAE, Opencode
+- **MCP Store** - Browse and search 7500+ MCP Servers from Official Registry and Smithery
+- **Skills Store** - Discover 600+ AI Skills for Cursor, Claude Code, Gemini CLI, Codex CLI, and Opencode
+- **One-Click Install** - Auto-configure to Cursor, VS Code, Claude Code, Gemini CLI, Codex CLI, Windsurf, Zed, TRAE, TRAE CN, Kiro, Opencode, JetBrains, Antigravity
 - **Agent Skills Standard** - Support for `~/.agents/skills/` unified standard ([skills.sh](https://skills.sh/))
 - **MCP Inspector** - Interactive debugging tool for testing MCP Server tools
 - **Config Management** - Unified management of MCP configurations across all clients
@@ -69,13 +69,18 @@ brew upgrade --cask mcp-dock
 | Client | Status |
 |--------|--------|
 | Cursor | Supported |
+| VS Code | Supported |
 | Claude Code | Supported |
 | Gemini CLI | Supported |
 | Codex CLI | Supported |
 | Windsurf | Supported |
 | Zed | Supported |
 | TRAE | Supported |
+| TRAE CN | Supported |
+| Kiro | Supported |
 | Opencode | Supported |
+| JetBrains (IntelliJ, WebStorm, PyCharm, etc.) | Supported |
+| Antigravity | Supported |
 
 ### Skills Clients
 

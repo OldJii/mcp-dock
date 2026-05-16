@@ -21,9 +21,9 @@
 
 ## 功能特性
 
-- **MCP 商店** - 浏览和搜索来自 Official Registry 和 Smithery 的 1000+ MCP Server
-- **Skills 商店** - 发现 3000+ AI Skills，适用于 Cursor、Claude Code、Gemini CLI、Codex CLI、Opencode
-- **一键安装** - 自动配置到 Cursor、Claude Code、Gemini CLI、Codex CLI、Windsurf、Zed、TRAE、Opencode
+- **MCP 商店** - 浏览和搜索来自 Official Registry 和 Smithery 的 7500+ MCP Server
+- **Skills 商店** - 发现 600+ AI Skills，适用于 Cursor、Claude Code、Gemini CLI、Codex CLI、Opencode
+- **一键安装** - 自动配置到 Cursor、VS Code、Claude Code、Gemini CLI、Codex CLI、Windsurf、Zed、TRAE、TRAE CN、Kiro、Opencode、JetBrains、Antigravity
 - **Agent Skills 标准** - 支持 `~/.agents/skills/` 统一标准（[skills.sh](https://skills.sh/)）
 - **MCP Inspector** - 交互式调试工具，测试 MCP Server 的 Tools
 - **配置管理** - 统一管理所有客户端的 MCP 配置
@@ -69,13 +69,18 @@ brew upgrade --cask mcp-dock
 | 客户端 | 状态 |
 |--------|------|
 | Cursor | 支持 |
+| VS Code | 支持 |
 | Claude Code | 支持 |
 | Gemini CLI | 支持 |
 | Codex CLI | 支持 |
 | Windsurf | 支持 |
 | Zed | 支持 |
 | TRAE | 支持 |
+| TRAE CN | 支持 |
+| Kiro | 支持 |
 | Opencode | 支持 |
+| JetBrains (IntelliJ, WebStorm, PyCharm 等) | 支持 |
+| Antigravity | 支持 |
 
 ### Skills 客户端
 
