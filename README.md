@@ -45,22 +45,22 @@ brew upgrade --cask mcp-dock
 
 ### macOS (Manual Download)
 
-- [Apple Silicon (M1/M2/M3)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.2.0-arm64.dmg)
-- [Intel](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.2.0.dmg)
+- [Apple Silicon (M1/M2/M3)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.0-arm64.dmg)
+- [Intel](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.0.dmg)
 
 > Note: The app is not signed. If you see "damaged" or "can't be opened" message, run: `xattr -cr /Applications/MCP\ Dock.app`
 
 ### Windows
 
-- [Installer](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.2.0.exe)
-- [Portable](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.1.2.0.exe)
+- [Installer](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.3.0.exe)
+- [Portable](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.1.3.0.exe)
 
 ### Linux
 
-- [AppImage (x64)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.2.0.AppImage)
-- [AppImage (arm64)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.2.0-arm64.AppImage)
-- [Debian/Ubuntu (x64)](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.2.0_amd64.deb)
-- [Debian/Ubuntu (arm64)](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.2.0_arm64.deb)
+- [AppImage (x64)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.0.AppImage)
+- [AppImage (arm64)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.0-arm64.AppImage)
+- [Debian/Ubuntu (x64)](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.3.0_amd64.deb)
+- [Debian/Ubuntu (arm64)](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.3.0_arm64.deb)
 
 ## Supported Clients
 
