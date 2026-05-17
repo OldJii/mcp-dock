@@ -5,7 +5,11 @@
 </p>
 
 <p align="center">
-  <strong>All-in-one MCP Server Manager</strong>
+  <strong>MCP Server & Config Manager for 14 AI Clients</strong>
+</p>
+
+<p align="center">
+  Manage MCP server configurations across Cursor, VS Code, Claude Code, Gemini CLI, Codex CLI, Windsurf, Zed, TRAE, Kiro, JetBrains, and more — all from one app.
 </p>
 
 <p align="center">

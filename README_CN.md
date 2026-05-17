@@ -5,7 +5,11 @@
 </p>
 
 <p align="center">
-  <strong>一站式 MCP Server 管理工具</strong>
+  <strong>MCP Server 配置管理工具 · 支持 14 个 AI 客户端</strong>
+</p>
+
+<p align="center">
+  统一管理 Cursor、VS Code、Claude Code、Gemini CLI、Codex CLI、Windsurf、Zed、TRAE、Kiro、JetBrains 等客户端的 MCP 配置。
 </p>
 
 <p align="center">
