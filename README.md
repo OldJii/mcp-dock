@@ -22,7 +22,7 @@
 ## Features
 
 - **MCP Store** - Browse and search 8500+ MCP Servers from Official Registry and Smithery
-- **Skills Store** - Discover 1300+ AI Skills for Cursor, Claude Code, Gemini CLI, Codex CLI, and Opencode
+- **Skills Store** - Discover 4400+ AI Skills for Cursor, Claude Code, Gemini CLI, Codex CLI, and Opencode
 - **One-Click Install** - Auto-configure to Cursor, VS Code, Claude Code, Gemini CLI, Codex CLI, Windsurf, Zed, TRAE, TRAE CN, Kiro, Opencode, JetBrains, Antigravity
 - **Agent Skills Standard** - Support for `~/.agents/skills/` unified standard ([skills.sh](https://skills.sh/))
 - **MCP Inspector** - Interactive debugging tool for testing MCP Server tools
