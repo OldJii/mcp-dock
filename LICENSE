@@ -1,29 +1,21 @@
-# License
+MIT License
 
-Copyright (c) 2024-2026 MCP Dock Team. All rights reserved.
+Copyright (c) 2024-2026 MCP Dock Contributors
 
-## Software License (Proprietary)
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-The software components of MCP Dock, including but not limited to:
-- Application installers (.dmg, .exe, .AppImage, .deb)
-- Compiled executables and binaries
-- Source code (in mcp-dock-core repository)
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
 
-Are proprietary software. You may:
-- Download and use the software for personal, non-commercial purposes
-- Share the official download links
-
-You may NOT:
-- Modify, reverse engineer, or create derivative works
-- Redistribute the software or any modified versions
-- Use the software for commercial purposes without explicit permission
-- Remove or alter any proprietary notices
-
-## Third-Party Data
-
-MCP Dock retrieves and caches data from the following sources:
-- Model Context Protocol Official Registry (https://modelcontextprotocol.io/)
-- Smithery.ai (https://smithery.ai/)
-- GitHub (for Skills and repository metadata)
-
-This data is provided by third parties and is subject to their respective licenses and terms of use. MCP Dock does not claim ownership of this data.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

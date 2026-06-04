@@ -1,15 +1,29 @@
-# macOS
-.DS_Store
+# Dependencies
+node_modules/
 
-# Editor
+# Build outputs
+dist/
+release/
+
+# IDE
 .idea/
 .vscode/
 *.swp
 *.swo
 
-# Temp files
-*.log
-*.tmp
+# OS
+.DS_Store
+Thumbs.db
 
-# Release binaries (use GitHub Releases instead)
-release/
+# Logs
+*.log
+npm-debug.log*
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Cache
+.cache/
+.parcel-cache/
