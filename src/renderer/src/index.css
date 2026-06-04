@@ -1,0 +1,318 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 基础样式 */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 隐藏滚动条的工具类 */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* 自定义滚动条 - Surge 风格 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* 拖拽区域 */
+.drag-region {
+  -webkit-app-region: drag;
+}
+
+.no-drag {
+  -webkit-app-region: no-drag;
+}
+
+/* 输入框样式 */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+/* 选中文本颜色 */
+::selection {
+  background: rgba(59, 130, 246, 0.3);
+}
+
+/* 卡片样式 */
+.card {
+  background: #2c2c2e;
+  border-radius: 10px;
+  border: 1px solid #3a3a3c;
+}
+
+/* 按钮基础样式 */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  transition: all 0.15s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  background: #3b82f6;
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #2563eb;
+}
+
+.btn-secondary {
+  background: #3a3a3c;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background: #48484a;
+}
+
+.btn-danger {
+  background: rgba(255, 59, 48, 0.15);
+  color: #ff3b30;
+}
+
+.btn-danger:hover {
+  background: rgba(255, 59, 48, 0.25);
+}
+
+/* 状态指示器 */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-dot.active {
+  background: #34c759;
+  box-shadow: 0 0 6px rgba(52, 199, 89, 0.5);
+}
+
+.status-dot.inactive {
+  background: #636366;
+}
+
+.status-dot.warning {
+  background: #ff9f0a;
+}
+
+/* 分隔线 */
+.divider {
+  height: 1px;
+  background: #3a3a3c;
+}
+
+/* 标签样式 */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.125rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.6875rem;
+  font-weight: 500;
+}
+
+.tag-success {
+  background: rgba(52, 199, 89, 0.15);
+  color: #34c759;
+}
+
+.tag-warning {
+  background: rgba(255, 159, 10, 0.15);
+  color: #ff9f0a;
+}
+
+.tag-info {
+  background: rgba(90, 200, 250, 0.15);
+  color: #5ac8fa;
+}
+
+.tag-default {
+  background: rgba(152, 152, 157, 0.15);
+  color: #98989d;
+}
+
+/* 动画 */
+.animate-fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 列表项悬浮效果 */
+.list-item {
+  transition: background-color 0.15s ease;
+}
+
+.list-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* 表格样式 */
+.table-row {
+  border-bottom: 1px solid #3a3a3c;
+}
+
+.table-row:last-child {
+  border-bottom: none;
+}
+
+/* GitHub Markdown 样式 */
+.github-markdown {
+  color: #e6edf3;
+  font-size: 14px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.github-markdown .markdown-body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+}
+
+/* GitHub 代码块语法高亮背景 */
+.github-markdown pre {
+  background: #161b22 !important;
+}
+
+.github-markdown pre code {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  white-space: pre;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+/* GitHub 任务列表 */
+.github-markdown ul:has(input[type="checkbox"]) {
+  list-style: none;
+  padding-left: 1.5em;
+}
+
+.github-markdown li:has(input[type="checkbox"]) {
+  position: relative;
+}
+
+.github-markdown li:has(input[type="checkbox"]) input {
+  position: absolute;
+  left: -1.5em;
+  top: 0.3em;
+}
+
+/* GitHub 脚注 */
+.github-markdown .footnotes {
+  font-size: 12px;
+  color: #8b949e;
+  border-top: 1px solid #30363d;
+  margin-top: 24px;
+  padding-top: 16px;
+}
+
+/* GitHub 警告/提示框 */
+.github-markdown .markdown-alert {
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  border-left: 4px solid;
+  border-radius: 6px;
+}
+
+.github-markdown .markdown-alert-note {
+  border-color: #58a6ff;
+  background: rgba(88, 166, 255, 0.1);
+}
+
+.github-markdown .markdown-alert-warning {
+  border-color: #d29922;
+  background: rgba(210, 153, 34, 0.1);
+}
+
+.github-markdown .markdown-alert-important {
+  border-color: #a371f7;
+  background: rgba(163, 113, 247, 0.1);
+}
+
+/* GitHub 键盘按键样式 */
+.github-markdown kbd {
+  display: inline-block;
+  padding: 3px 5px;
+  font-size: 11px;
+  line-height: 10px;
+  color: #e6edf3;
+  vertical-align: middle;
+  background-color: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  box-shadow: inset 0 -1px 0 #30363d;
+}
+
+/* GitHub 详情/摘要 */
+.github-markdown details {
+  margin-bottom: 16px;
+}
+
+.github-markdown details summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #e6edf3;
+  padding: 8px 0;
+}
+
+.github-markdown details summary:hover {
+  color: #58a6ff;
+}
+
+.github-markdown details[open] summary {
+  margin-bottom: 8px;
+}
+
+/* GitHub 定义列表 */
+.github-markdown dl {
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+.github-markdown dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #e6edf3;
+}
+
+.github-markdown dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+  color: #8b949e;
+}

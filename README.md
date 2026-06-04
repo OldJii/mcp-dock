@@ -143,11 +143,73 @@ Internet is required for loading the MCP list. Installed MCP configurations are 
 2. Delete the config directory `~/.mcp-dock/`
 3. MCP configurations remain in each client's config file. Remove manually if needed.
 
+## Source Code
+
+This repository includes the full source code of MCP Dock (Community Edition). You can build, modify, and contribute to the project.
+
+### Tech Stack
+
+- **Framework**: Electron + React 18 + TypeScript
+- **Styling**: Tailwind CSS
+- **State**: Zustand
+- **Build**: Vite + electron-builder
+- **Protocol**: MCP JSON-RPC over stdio
+
+### Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development mode
+npm run electron:dev
+
+# Build for production
+npm run package
+```
+
+### Project Structure
+
+```
+src/
+├── renderer/           # Frontend (React + Vite + Tailwind)
+│   ├── src/
+│   │   ├── components/ # UI components
+│   │   ├── pages/      # App pages (Store, Library, Inspector, etc.)
+│   │   ├── api/        # Registry API layer
+│   │   ├── store/      # Zustand state management
+│   │   ├── lib/        # Utilities and Electron bridge
+│   │   └── locales/    # i18n (English + Chinese)
+│   └── assets/         # Icons and static assets
+├── main/               # Electron main process
+│   ├── config-manager  # Multi-client config read/write (14 clients)
+│   ├── mcp-client      # MCP JSON-RPC client for Inspector
+│   ├── skills-manager  # Skills installation and management
+│   ├── history-manager # Config backup and rollback
+│   ├── env-manager     # Runtime environment detection
+│   └── cache-manager   # Local data caching
+├── preload/            # Electron preload (secure IPC bridge)
+└── __tests__/          # Unit tests
+```
+
+### Community Edition vs Full Version
+
+| Feature | Community | Full |
+|---------|-----------|------|
+| Manual server install to 14 clients | ✅ | ✅ |
+| MCP Inspector | ✅ | ✅ |
+| Config history & rollback | ✅ | ✅ |
+| Multi-client sync | ✅ | ✅ |
+| Skills management | ✅ | ✅ |
+| Browse 8,500+ MCP servers | ❌ | ✅ |
+| Browse 4,400+ AI Skills | ❌ | ✅ |
+| One-click install from registry | ❌ | ✅ |
+
+To get the full version with registry browsing, [download the latest release](https://github.com/OldJii/mcp-dock/releases).
+
 ## License
 
-- **Software** (installers, executables): Proprietary - All rights reserved
-
-See [LICENSE](./LICENSE) for details.
+MIT License - See [LICENSE](./LICENSE) for details.
 
 ## Credits
 
