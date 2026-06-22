@@ -10,6 +10,33 @@ import os from 'os';
 
 const execAsync = promisify(exec);
 
+export function selectExecutablePath(
+  commandOutput: string | null,
+  executableName: string,
+  platform: NodeJS.Platform = process.platform,
+): string | null {
+  if (!commandOutput) return null;
+
+  const candidates = commandOutput
+    .split(/\r?\n/)
+    .map((candidate) => candidate.trim())
+    .filter(Boolean);
+
+  if (candidates.length === 0) return null;
+
+  if (platform === 'win32') {
+    const executable = executableName.toLowerCase();
+    const winBasename = (candidate: string) => path.win32.basename(candidate).toLowerCase();
+    return (
+      candidates.find((candidate) => winBasename(candidate) === `${executable}.cmd`) ||
+      candidates.find((candidate) => winBasename(candidate) === `${executable}.exe`) ||
+      candidates[0]
+    );
+  }
+
+  return candidates[0];
+}
+
 export interface RuntimeInfo {
   available: boolean;
   version: string | null;
@@ -85,7 +112,7 @@ export class EnvManager {
       return {
         available: true,
         version: version.replace('v', ''),
-        path: nodePath,
+        path: selectExecutablePath(nodePath, 'node'),
       };
     }
     return { available: false, version: null, path: null };
@@ -110,7 +137,7 @@ export class EnvManager {
       return {
         available: true,
         version: version.replace('Python ', ''),
-        path: pythonPath,
+        path: selectExecutablePath(pythonPath, 'python'),
       };
     }
     return { available: false, version: null, path: null };
@@ -127,7 +154,7 @@ export class EnvManager {
       return {
         available: true,
         version,
-        path: npxPath,
+        path: selectExecutablePath(npxPath, 'npx'),
       };
     }
     return { available: false, version: null, path: null };
@@ -144,7 +171,7 @@ export class EnvManager {
       return {
         available: true,
         version,
-        path: uvxPath,
+        path: selectExecutablePath(uvxPath, 'uvx'),
       };
     }
     return { available: false, version: null, path: null };

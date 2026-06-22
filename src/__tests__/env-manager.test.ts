@@ -6,9 +6,35 @@
 import { describe, it, expect } from 'vitest';
 import os from 'os';
 import path from 'path';
-import { EnvManager } from '../main/env-manager';
+import { EnvManager, selectExecutablePath } from '../main/env-manager';
 
 const envManager = new EnvManager();
+
+describe('selectExecutablePath', () => {
+  it('prefers the .cmd shim from multiline Windows where output', () => {
+    const output = [
+      String.raw`C:\Program Files\nodejs\npx`,
+      String.raw`C:\Program Files\nodejs\npx.cmd`,
+    ].join('\r\n');
+
+    expect(selectExecutablePath(output, 'npx', 'win32')).toBe(String.raw`C:\Program Files\nodejs\npx.cmd`);
+  });
+
+  it('falls back to the first Windows candidate when no shim is present', () => {
+    const output = [
+      String.raw`C:\Tools\uvx`,
+      String.raw`C:\OtherTools\uvx`,
+    ].join('\n');
+
+    expect(selectExecutablePath(output, 'uvx', 'win32')).toBe(String.raw`C:\Tools\uvx`);
+  });
+
+  it('uses the first candidate on non-Windows platforms', () => {
+    const output = ['/usr/local/bin/npx', '/opt/homebrew/bin/npx'].join('\n');
+
+    expect(selectExecutablePath(output, 'npx', 'darwin')).toBe('/usr/local/bin/npx');
+  });
+});
 
 describe('getEnhancedPath', () => {
   it('应包含当前 PATH', () => {
