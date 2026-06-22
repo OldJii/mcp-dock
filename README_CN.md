@@ -49,22 +49,22 @@ brew upgrade --cask mcp-dock
 
 ### macOS (手动下载)
 
-- [Apple Silicon (M1/M2/M3)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.1-arm64.dmg)
-- [Intel](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.1.dmg)
+- [Apple Silicon (M1/M2/M3)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.2-arm64.dmg)
+- [Intel](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.2.dmg)
 
 > 注意: 应用未签名，如果提示"文件已损坏"或"无法打开"，请执行: `xattr -cr /Applications/MCP\ Dock.app`
 
 ### Windows
 
-- [安装版](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.3.1.exe)
-- [便携版](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.1.3.1.exe)
+- [安装版](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.3.2.exe)
+- [便携版](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.1.3.2.exe)
 
 ### Linux
 
-- [AppImage (x64)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.1.AppImage)
-- [AppImage (arm64)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.1-arm64.AppImage)
-- [Debian/Ubuntu (x64)](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.3.1_amd64.deb)
-- [Debian/Ubuntu (arm64)](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.3.1_arm64.deb)
+- [AppImage (x64)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.2.AppImage)
+- [AppImage (arm64)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.2-arm64.AppImage)
+- [Debian/Ubuntu (x64)](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.3.2_amd64.deb)
+- [Debian/Ubuntu (arm64)](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.3.2_arm64.deb)
 
 ## 支持的客户端
 
