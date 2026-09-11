@@ -1,0 +1,13 @@
+{
+  "name": "you-web",
+  "description": "Use You.com web search for tasks that need current information, external facts, source reading, or cited answers. Provides a search -> read -> cite pipeline: 'you-search' finds candidate web pages, 'you-contents' extracts full page content, and answers are built from read sources with inline citations. Use when the agent needs up-to-date docs, factual verification, or research beyond its training data. Works with the You.com MCP server (https://api.you.com/mcp, authenticated via YDC_API_KEY) or the keyless profile (https://api.you.com/mcp?profile=free) for basic search.",
+  "author": "youdotcom-oss",
+  "repoUrl": "https://github.com/youdotcom-oss/agent-skills",
+  "skillPath": "skills/you-web",
+  "branch": "main",
+  "iconUrl": null,
+  "tags": ["web-search", "research", "search", "citations", "mcp"],
+  "category": "Productivity",
+  "allowedTools": [],
+  "files": []
+}
