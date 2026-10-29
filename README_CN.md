@@ -1,7 +1,7 @@
 # MCP Dock
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/OldJii/mcp-dock/main/assets/icon.png" width="128" height="128" alt="MCP Dock">
+  <img src="https://raw.githubusercontent.com/today-fo/mcp-dock/main/assets/icon.png" width="128" height="128" alt="MCP Dock">
 </p>
 
 <p align="center">
@@ -35,13 +35,17 @@
 - **历史记录** - 自动备份配置，支持一键回滚
 - **多语言** - 支持中文和英文界面
 
-## 下载安装
+## 下载
+
+> 仓库迁移后，预编译安装包暂不可用。请以 [Releases](https://github.com/today-fo/mcp-dock/releases) 中实际存在的资产为准，或按下文从源码构建。
+
+安装
 
 ### macOS (推荐: Homebrew)
 
 ```bash
 # 安装
-brew install --cask OldJii/tap/mcp-dock
+brew install --cask today-fo/tap/mcp-dock
 
 # 更新
 brew upgrade --cask mcp-dock
@@ -49,22 +53,22 @@ brew upgrade --cask mcp-dock
 
 ### macOS (手动下载)
 
-- [Apple Silicon (M1/M2/M3)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.2-arm64.dmg)
-- [Intel](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.2.dmg)
+- [Apple Silicon (M1/M2/M3)](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2-arm64.dmg)
+- [Intel](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2.dmg)
 
 > 注意: 应用未签名，如果提示"文件已损坏"或"无法打开"，请执行: `xattr -cr /Applications/MCP\ Dock.app`
 
 ### Windows
 
-- [安装版](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.3.2.exe)
-- [便携版](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.1.3.2.exe)
+- [安装版](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.3.2.exe)
+- [便携版](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock.1.3.2.exe)
 
 ### Linux
 
-- [AppImage (x64)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.2.AppImage)
-- [AppImage (arm64)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.2-arm64.AppImage)
-- [Debian/Ubuntu (x64)](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.3.2_amd64.deb)
-- [Debian/Ubuntu (arm64)](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.3.2_arm64.deb)
+- [AppImage (x64)](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2.AppImage)
+- [AppImage (arm64)](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2-arm64.AppImage)
+- [Debian/Ubuntu (x64)](https://github.com/today-fo/mcp-dock/releases/latest/download/mcp-dock_1.3.2_amd64.deb)
+- [Debian/Ubuntu (arm64)](https://github.com/today-fo/mcp-dock/releases/latest/download/mcp-dock_1.3.2_arm64.deb)
 
 ## 支持的客户端
 

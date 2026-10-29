@@ -1,7 +1,7 @@
 # MCP Dock
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/OldJii/mcp-dock/main/assets/icon.png" width="128" height="128" alt="MCP Dock">
+  <img src="https://raw.githubusercontent.com/today-fo/mcp-dock/main/assets/icon.png" width="128" height="128" alt="MCP Dock">
 </p>
 
 <p align="center">
@@ -37,11 +37,15 @@
 
 ## Download
 
+> Pre-built downloads are temporarily unavailable after the repository migration. Check [Releases](https://github.com/today-fo/mcp-dock/releases) for available assets, or use the source build instructions below.
+
+
+
 ### macOS (Recommended: Homebrew)
 
 ```bash
 # Install
-brew install --cask OldJii/tap/mcp-dock
+brew install --cask today-fo/tap/mcp-dock
 
 # Upgrade
 brew upgrade --cask mcp-dock
@@ -49,22 +53,22 @@ brew upgrade --cask mcp-dock
 
 ### macOS (Manual Download)
 
-- [Apple Silicon (M1/M2/M3)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.2-arm64.dmg)
-- [Intel](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.2.dmg)
+- [Apple Silicon (M1/M2/M3)](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2-arm64.dmg)
+- [Intel](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2.dmg)
 
 > Note: The app is not signed. If you see "damaged" or "can't be opened" message, run: `xattr -cr /Applications/MCP\ Dock.app`
 
 ### Windows
 
-- [Installer](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.3.2.exe)
-- [Portable](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.1.3.2.exe)
+- [Installer](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.3.2.exe)
+- [Portable](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock.1.3.2.exe)
 
 ### Linux
 
-- [AppImage (x64)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.2.AppImage)
-- [AppImage (arm64)](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.3.2-arm64.AppImage)
-- [Debian/Ubuntu (x64)](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.3.2_amd64.deb)
-- [Debian/Ubuntu (arm64)](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.3.2_arm64.deb)
+- [AppImage (x64)](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2.AppImage)
+- [AppImage (arm64)](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2-arm64.AppImage)
+- [Debian/Ubuntu (x64)](https://github.com/today-fo/mcp-dock/releases/latest/download/mcp-dock_1.3.2_amd64.deb)
+- [Debian/Ubuntu (arm64)](https://github.com/today-fo/mcp-dock/releases/latest/download/mcp-dock_1.3.2_arm64.deb)
 
 ## Supported Clients
 
@@ -205,7 +209,7 @@ src/
 | Browse 4,400+ AI Skills | ❌ | ✅ |
 | One-click install from registry | ❌ | ✅ |
 
-To get the full version with registry browsing, [download the latest release](https://github.com/OldJii/mcp-dock/releases).
+To get the full version with registry browsing, [download the latest release](https://github.com/today-fo/mcp-dock/releases).
 
 ## License
 
