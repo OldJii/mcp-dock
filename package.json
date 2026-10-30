@@ -6,7 +6,7 @@
     "name": "MCP Dock Team",
     "email": "mail@folay.top"
   },
-  "homepage": "https://github.com/OldJii/mcp-dock",
+  "homepage": "https://mcp.folay.top",
   "main": "dist/main/index.js",
   "scripts": {
     "dev": "concurrently \"npm run dev:main\" \"npm run dev:renderer\"",

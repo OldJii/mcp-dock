@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="http://mcp.folay.top/">官方网站</a> |
+  <a href="https://mcp.folay.top">官方网站</a> |
   <a href="#功能特性">功能特性</a> |
   <a href="#下载安装">下载安装</a> |
   <a href="#支持的客户端">支持的客户端</a> |
@@ -25,8 +25,8 @@
 
 ## 功能特性
 
-- **MCP 商店** - 浏览和搜索来自 Official Registry 和 Smithery 的 8500+ MCP Server
-- **Skills 商店** - 发现 4400+ AI Skills，适用于 Cursor、Claude Code、Gemini CLI、Codex CLI、Opencode
+- **MCP 商店** - 浏览和搜索来自 Official Registry 和 Smithery 的 MCP Server（完整版）
+- **Skills 商店** - 发现 AI Skills，适用于 Cursor、Claude Code、Gemini CLI、Codex CLI、Opencode（完整版）
 - **一键安装** - 自动配置到 Cursor、VS Code、Claude Code、Gemini CLI、Codex CLI、Windsurf、Zed、TRAE、TRAE CN、Kiro、Opencode、JetBrains、Antigravity、OpenClaw
 - **Agent Skills 标准** - 支持 `~/.agents/skills/` 统一标准（[skills.sh](https://skills.sh/)）
 - **MCP Inspector** - 交互式调试工具，测试 MCP Server 的 Tools
@@ -35,40 +35,12 @@
 - **历史记录** - 自动备份配置，支持一键回滚
 - **多语言** - 支持中文和英文界面
 
-## 下载
+## 下载安装
 
-> 仓库迁移后，预编译安装包暂不可用。请以 [Releases](https://github.com/today-fo/mcp-dock/releases) 中实际存在的资产为准，或按下文从源码构建。
+**目前尚未发布安装包**，所以现在没有可下载的文件，也没有可用的 Homebrew 命令。经过签名与公证的版本发布后，会在[官方网站](https://mcp.folay.top)列出；本 README 不会列出并不存在的文件链接。
 
-安装
-
-### macOS (推荐: Homebrew)
-
-```bash
-# 安装
-brew install --cask today-fo/tap/mcp-dock
-
-# 更新
-brew upgrade --cask mcp-dock
-```
-
-### macOS (手动下载)
-
-- [Apple Silicon (M1/M2/M3)](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2-arm64.dmg)
-- [Intel](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2.dmg)
-
-> 注意: 应用未签名，如果提示"文件已损坏"或"无法打开"，请执行: `xattr -cr /Applications/MCP\ Dock.app`
-
-### Windows
-
-- [安装版](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.3.2.exe)
-- [便携版](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock.1.3.2.exe)
-
-### Linux
-
-- [AppImage (x64)](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2.AppImage)
-- [AppImage (arm64)](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2-arm64.AppImage)
-- [Debian/Ubuntu (x64)](https://github.com/today-fo/mcp-dock/releases/latest/download/mcp-dock_1.3.2_amd64.deb)
-- [Debian/Ubuntu (arm64)](https://github.com/today-fo/mcp-dock/releases/latest/download/mcp-dock_1.3.2_arm64.deb)
+- 已安装旧版？应用内更新暂时无法获取新版本。待官网开放下载后，请从官网重新安装，配置会保留。
+- 在此之前，可以按本仓库的说明从源码构建开源社区版。社区版功能少于完整版（见下方对比）。
 
 ## 支持的客户端
 

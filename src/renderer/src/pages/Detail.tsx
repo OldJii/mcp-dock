@@ -14,14 +14,12 @@ import {
   isSmitheryDetail, 
   isOfficialDetail,
   type DataSource,
-  type SmitheryDetail,
   type OfficialPackage,
   type OfficialRemote,
 } from '../api/registry';
 import { useElectronAPI, type RuntimeInfo, type ClientInfo, type ClientType } from '../lib/electron';
 import { useStore } from '../store/useStore';
 import Modal from '../components/Modal';
-import ConfigForm from '../components/ConfigForm';
 import OfficialConfigForm from '../components/OfficialConfigForm';
 import ClientIcon from '../components/ClientIcon';
 import { BackIcon, ClockIcon, DownloadIcon, VerifiedIcon, GitHubIcon, ExternalLinkIcon, CheckIcon } from '../components/Icons';
@@ -189,50 +187,6 @@ export default function Detail() {
         ? prev.filter(c => c !== clientId)
         : [...prev, clientId]
     );
-  };
-
-  // Smithery 安装
-  const handleSmitheryInstall = async (configValues: Record<string, any>) => {
-    const clientsToInstall = selectedClients.filter(c => !installedClients.includes(c));
-    
-    if (clientsToInstall.length === 0) {
-      setInstallError('Please select at least one client.');
-      return;
-    }
-
-    setIsInstalling(true);
-    setInstallError(null);
-    
-    try {
-      const npxPath = await api.env.getNpxPath();
-      const uvxPath = await api.env.getUvxPath();
-      
-      const smitheryServer = server as SmitheryDetail;
-      const runtime = smitheryServer.connection?.runtime || 'node';
-      const config = {
-        command: runtime === 'node' ? npxPath : uvxPath,
-        args: runtime === 'node'
-          ? ['-y', '@smithery/cli@latest', 'run', decodedId, '--config', JSON.stringify(configValues)]
-          : ['smithery-cli', 'run', decodedId, '--config', JSON.stringify(configValues)],
-      };
-
-      const result = await api.config.installServer(decodedId, config, clientsToInstall);
-      
-      if (result.success.length > 0) {
-        addInstalledServerId(decodedId);
-        await refreshInstalledClients();
-        setShowConfigModal(false);
-      }
-      
-      if (result.failed.length > 0) {
-        setInstallError(`Failed to install to: ${result.failed.join(', ')}`);
-      }
-    } catch (error) {
-      console.error('Install failed:', error);
-      setInstallError(String(error));
-    } finally {
-      setIsInstalling(false);
-    }
   };
 
   // Official 安装
@@ -418,6 +372,9 @@ export default function Detail() {
   };
 
   const runtimeAvailable = runtimeInfo?.available ?? false;
+  // Smithery 的安装流程（认证与托管方式）已变化，原有的 CLI 命令不再可靠，暂停新增安装。
+  // 这并不代表所有 `smithery run` 用法都已弃用；已有配置照常识别，仍可卸载。
+  const smitheryInstallPaused = !!server && isSmitheryDetail(server);
 
   if (isLoading) {
     return (
@@ -706,13 +663,18 @@ export default function Detail() {
         <div className="w-[280px] flex-shrink-0 border-l border-[#3a3a3c] overflow-y-auto p-4">
           {/* 安装按钮 */}
           <div className="mb-4 space-y-2">
-            {runtimeAvailable && (
+            {runtimeAvailable && !smitheryInstallPaused && (
               <button
                 onClick={() => setShowConfigModal(true)}
                 className="w-full btn btn-primary text-[13px]"
               >
                 {installedClients.length > 0 ? t('detail.installMore') : t('detail.install')}
               </button>
+            )}
+            {smitheryInstallPaused && (
+              <p className="text-[11px] leading-relaxed text-[#98989d]">
+                {t('detail.smitheryInstallPaused')}
+              </p>
             )}
             {installedClients.length > 0 && (
               <button
@@ -1032,19 +994,6 @@ export default function Detail() {
                   {t('detail.configDescription')}
                 </p>
               </div>
-              
-              {/* Smithery 配置表单 */}
-              {isSmitheryDetail(server) && (
-                <ConfigForm
-                  schema={server.connection?.configSchema || { type: 'object', properties: {}, required: [] }}
-                  onSubmit={handleSmitheryInstall}
-                  onCancel={() => {
-                    setShowConfigModal(false);
-                    setInstallError(null);
-                  }}
-                  isLoading={isInstalling}
-                />
-              )}
               
               {/* Official 配置表单 */}
               {isOfficialDetail(server) && (

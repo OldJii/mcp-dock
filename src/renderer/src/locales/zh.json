@@ -54,6 +54,7 @@
     "createdAt": "创建时间",
     "publishedAt": "发布时间",
     "install": "安装",
+    "smitheryInstallPaused": "Smithery 的安装流程已变化，MCP Dock 暂停新增安装。请通过 Smithery 官方 CLI（smithery mcp add）添加；已有配置不受影响。",
     "installMore": "安装到更多客户端",
     "installed": "已安装",
     "installedIn": "已安装于",

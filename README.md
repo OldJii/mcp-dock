@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  <a href="http://mcp.folay.top">Website</a> |
+  <a href="https://mcp.folay.top">Website</a> |
   <a href="#features">Features</a> |
   <a href="#download">Download</a> |
   <a href="#supported-clients">Supported Clients</a> |
@@ -25,8 +25,8 @@
 
 ## Features
 
-- **MCP Store** - Browse and search 8500+ MCP Servers from Official Registry and Smithery
-- **Skills Store** - Discover 4400+ AI Skills for Cursor, Claude Code, Gemini CLI, Codex CLI, and Opencode
+- **MCP Store** - Browse and search MCP Servers from the Official Registry and Smithery (full version)
+- **Skills Store** - Discover AI Skills for Cursor, Claude Code, Gemini CLI, Codex CLI, and Opencode (full version)
 - **One-Click Install** - Auto-configure to Cursor, VS Code, Claude Code, Gemini CLI, Codex CLI, Windsurf, Zed, TRAE, TRAE CN, Kiro, Opencode, JetBrains, Antigravity, OpenClaw
 - **Agent Skills Standard** - Support for `~/.agents/skills/` unified standard ([skills.sh](https://skills.sh/))
 - **MCP Inspector** - Interactive debugging tool for testing MCP Server tools
@@ -37,38 +37,10 @@
 
 ## Download
 
-> Pre-built downloads are temporarily unavailable after the repository migration. Check [Releases](https://github.com/today-fo/mcp-dock/releases) for available assets, or use the source build instructions below.
+**No installers are published yet**, so there is currently nothing to download and no Homebrew command to run. Signed and notarized builds will be listed on the [official website](https://mcp.folay.top) when they are released; this README will not list links to files that do not exist.
 
-
-
-### macOS (Recommended: Homebrew)
-
-```bash
-# Install
-brew install --cask today-fo/tap/mcp-dock
-
-# Upgrade
-brew upgrade --cask mcp-dock
-```
-
-### macOS (Manual Download)
-
-- [Apple Silicon (M1/M2/M3)](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2-arm64.dmg)
-- [Intel](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2.dmg)
-
-> Note: The app is not signed. If you see "damaged" or "can't be opened" message, run: `xattr -cr /Applications/MCP\ Dock.app`
-
-### Windows
-
-- [Installer](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.3.2.exe)
-- [Portable](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock.1.3.2.exe)
-
-### Linux
-
-- [AppImage (x64)](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2.AppImage)
-- [AppImage (arm64)](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.3.2-arm64.AppImage)
-- [Debian/Ubuntu (x64)](https://github.com/today-fo/mcp-dock/releases/latest/download/mcp-dock_1.3.2_amd64.deb)
-- [Debian/Ubuntu (arm64)](https://github.com/today-fo/mcp-dock/releases/latest/download/mcp-dock_1.3.2_arm64.deb)
+- Already using an older MCP Dock? Its built-in updater cannot reach new versions yet. Once downloads open, reinstall from the website; your configuration is kept.
+- The open-source Community Edition in this repository can be [built from source](#development) in the meantime. It has fewer features than the full application (see the comparison below).
 
 ## Supported Clients
 
@@ -205,11 +177,11 @@ src/
 | Config history & rollback | ✅ | ✅ |
 | Multi-client sync | ✅ | ✅ |
 | Skills management | ✅ | ✅ |
-| Browse 8,500+ MCP servers | ❌ | ✅ |
-| Browse 4,400+ AI Skills | ❌ | ✅ |
+| Browse the MCP server catalog | ❌ | ✅ |
+| Browse the AI Skills catalog | ❌ | ✅ |
 | One-click install from registry | ❌ | ✅ |
 
-To get the full version with registry browsing, [download the latest release](https://github.com/today-fo/mcp-dock/releases).
+The full version with registry browsing is distributed as installers from the [official website](https://mcp.folay.top) once they are published (see [Download](#download)).
 
 ## License
 

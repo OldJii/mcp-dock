@@ -54,6 +54,7 @@
     "createdAt": "Created",
     "publishedAt": "Published",
     "install": "Install",
+    "smitheryInstallPaused": "Smithery's installation flow has changed, so adding Smithery servers from MCP Dock is paused. Add them with Smithery's official CLI (smithery mcp add) instead. Existing configs are unaffected.",
     "installMore": "Install to More Clients",
     "installed": "Installed",
     "installedIn": "Installed In",

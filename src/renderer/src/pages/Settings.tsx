@@ -436,7 +436,7 @@ export default function Settings() {
                 className="inline-flex items-center gap-1.5 text-[12px] text-[#0a84ff] hover:text-[#5ac8fa] transition-colors"
                 onClick={(e) => {
                   e.preventDefault();
-                  api.system.openExternal('https://github.com/OldJii/mcp-dock');
+                  api.system.openExternal('https://mcp.folay.top/source');
                 }}
               >
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -449,7 +449,7 @@ export default function Settings() {
                 className="inline-flex items-center gap-1.5 text-[12px] text-[#98989d] hover:text-[#0a84ff] transition-colors"
                 onClick={(e) => {
                   e.preventDefault();
-                  api.system.openExternal('https://github.com/OldJii/mcp-dock/tree/main/community-registry');
+                  api.system.openExternal('https://mcp.folay.top/contribute');
                 }}
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

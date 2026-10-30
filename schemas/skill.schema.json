@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://raw.githubusercontent.com/OldJii/mcp-dock/main/schemas/skill.schema.json",
+  "$id": "https://raw.githubusercontent.com/today-fo/mcp-dock/main/schemas/skill.schema.json",
   "title": "AI Agent Skill Schema",
   "description": "Schema for community-contributed AI Agent Skills (SKILL.md files)",
   "type": "object",

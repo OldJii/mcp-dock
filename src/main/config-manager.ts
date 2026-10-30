@@ -1049,40 +1049,4 @@ export class ConfigManager {
     const { servers } = await this.getAllInstalledServers();
     return serverId in servers;
   }
-
-  /**
-   * 生成 Smithery CLI 配置
-   */
-  generateServerConfig(
-    runtime: 'node' | 'python',
-    qualifiedName: string,
-    configValues: Record<string, any>,
-    npxPath: string = 'npx',
-    uvxPath: string = 'uvx'
-  ): McpServerConfig {
-    if (runtime === 'node') {
-      return {
-        command: npxPath,
-        args: [
-          '-y',
-          '@smithery/cli@latest',
-          'run',
-          qualifiedName,
-          '--config',
-          JSON.stringify(configValues),
-        ],
-      };
-    } else {
-      return {
-        command: uvxPath,
-        args: [
-          'smithery-cli',
-          'run',
-          qualifiedName,
-          '--config',
-          JSON.stringify(configValues),
-        ],
-      };
-    }
-  }
 }
