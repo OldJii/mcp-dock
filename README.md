@@ -37,7 +37,7 @@
 
 ## Download
 
-**No installers are published yet**, so there is currently nothing to download and no Homebrew command to run. Signed and notarized builds will be listed on the [official website](https://mcp.folay.top) when they are released; this README will not list links to files that do not exist.
+**No installers are published yet**, so there is currently nothing to download and no Homebrew command to run. Builds will be listed on the [official website](https://mcp.folay.top) when they are released; this README will not list links to files that do not exist. macOS builds use ad-hoc signing without Apple notarization, and Windows builds are unsigned; first launch may show a system prompt.
 
 - Already using an older MCP Dock? Its built-in updater cannot reach new versions yet. Once downloads open, reinstall from the website; your configuration is kept.
 - The open-source Community Edition in this repository can be [built from source](#development) in the meantime. It has fewer features than the full application (see the comparison below).
