@@ -37,10 +37,22 @@
 
 ## 下载安装
 
-**目前尚未发布安装包**，所以现在没有可下载的文件，也没有可用的 Homebrew 命令。版本发布后，会在[官方网站](https://mcp.folay.top)列出；本 README 不会列出并不存在的文件链接。macOS 使用 ad-hoc 签名且不做 Apple 公证，Windows 不签名，首次打开可能出现系统提示。
+**最新版本：[v1.4.0](https://github.com/today-fo/mcp-dock/releases/latest)。** 安装说明和当前下载状态见[官方网站](https://mcp.folay.top)。
 
-- 已安装旧版？应用内更新暂时无法获取新版本。待官网开放下载后，请从官网重新安装，配置会保留。
-- 在此之前，可以按本仓库的说明从源码构建开源社区版。社区版功能少于完整版（见下方对比）。
+| 平台 | 下载 |
+|------|------|
+| macOS（Apple 芯片） | [MCP.Dock-1.4.0-arm64.dmg](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.4.0-arm64.dmg) |
+| macOS（Intel） | [MCP.Dock-1.4.0.dmg](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.4.0.dmg) |
+| Windows | [安装版](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.4.0.exe) · [便携版](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock.1.4.0.exe) |
+| Linux（x64） | [AppImage](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.4.0.AppImage) · [.deb](https://github.com/today-fo/mcp-dock/releases/latest/download/mcp-dock_1.4.0_amd64.deb) |
+| Linux（ARM64） | [AppImage](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.4.0-arm64.AppImage) · [.deb](https://github.com/today-fo/mcp-dock/releases/latest/download/mcp-dock_1.4.0_arm64.deb) |
+
+Homebrew（macOS）：`brew install --cask today-fo/tap/mcp-dock`
+
+macOS 版本使用 ad-hoc 签名，**未经 Apple 公证**；Windows 版本**未做代码签名**，首次打开时系统可能拦截或提示。详见[安装指南](https://mcp.folay.top/guides/install)。
+
+- 已安装 1.3.x 或更早版本？这些版本内置的更新源已不存在，无法自行更新到本版本。请从上表下载并覆盖安装，配置会保留。
+- 也可以按本仓库的说明从源码构建开源社区版。社区版功能少于完整版（见下方对比）。
 
 ## 支持的客户端
 

@@ -37,10 +37,22 @@
 
 ## Download
 
-**No installers are published yet**, so there is currently nothing to download and no Homebrew command to run. Builds will be listed on the [official website](https://mcp.folay.top) when they are released; this README will not list links to files that do not exist. macOS builds use ad-hoc signing without Apple notarization, and Windows builds are unsigned; first launch may show a system prompt.
+**Latest release: [v1.4.0](https://github.com/today-fo/mcp-dock/releases/latest).** Install notes and the current download status are on the [official website](https://mcp.folay.top).
 
-- Already using an older MCP Dock? Its built-in updater cannot reach new versions yet. Once downloads open, reinstall from the website; your configuration is kept.
-- The open-source Community Edition in this repository can be [built from source](#development) in the meantime. It has fewer features than the full application (see the comparison below).
+| Platform | Download |
+|----------|----------|
+| macOS (Apple Silicon) | [MCP.Dock-1.4.0-arm64.dmg](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.4.0-arm64.dmg) |
+| macOS (Intel) | [MCP.Dock-1.4.0.dmg](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.4.0.dmg) |
+| Windows | [Installer](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.4.0.exe) · [Portable](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock.1.4.0.exe) |
+| Linux (x64) | [AppImage](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.4.0.AppImage) · [.deb](https://github.com/today-fo/mcp-dock/releases/latest/download/mcp-dock_1.4.0_amd64.deb) |
+| Linux (ARM64) | [AppImage](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.4.0-arm64.AppImage) · [.deb](https://github.com/today-fo/mcp-dock/releases/latest/download/mcp-dock_1.4.0_arm64.deb) |
+
+Homebrew (macOS): `brew install --cask today-fo/tap/mcp-dock`
+
+The macOS builds are ad-hoc signed and **not notarized by Apple**, and the Windows builds are **not code-signed**, so the system may block or warn on first launch. See the [install guide](https://mcp.folay.top/guides/install).
+
+- Already using MCP Dock 1.3.x or earlier? The built-in updater of those versions points to an update source that no longer exists, so it cannot update itself to this version. Download it from the table above and install it over the old app; your configuration is kept.
+- The open-source Community Edition in this repository can also be [built from source](#development). It has fewer features than the full application (see the comparison below).
 
 ## Supported Clients
 
@@ -181,7 +193,7 @@ src/
 | Browse the AI Skills catalog | ❌ | ✅ |
 | One-click install from registry | ❌ | ✅ |
 
-The full version with registry browsing is distributed as installers from the [official website](https://mcp.folay.top) once they are published (see [Download](#download)).
+The full version with registry browsing is distributed as installers (see [Download](#download)).
 
 ## License
 
