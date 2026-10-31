@@ -25,7 +25,7 @@
 
 ## 功能特性
 
-- **MCP 商店** - 浏览和搜索来自 Official Registry 和 Smithery 的 MCP Server（完整版）
+- **MCP 商店** - 浏览和搜索 Official Registry 收录的 MCP Server（完整版）
 - **Skills 商店** - 发现 AI Skills，适用于 Cursor、Claude Code、Gemini CLI、Codex CLI、Opencode（完整版）
 - **一键安装** - 自动配置到 Cursor、VS Code、Claude Code、Gemini CLI、Codex CLI、Windsurf、Zed、TRAE、TRAE CN、Kiro、Opencode、JetBrains、Antigravity、OpenClaw
 - **Agent Skills 标准** - 支持 `~/.agents/skills/` 统一标准（[skills.sh](https://skills.sh/)）
@@ -76,12 +76,12 @@
 
 ## 数据源
 
-MCP Dock 支持两个数据源：
+完整版读取两个目录，每 14 天更新一次：
 
-- **Official** - MCP 官方注册表，包含经过验证的 MCP Server
-- **Smithery** - Smithery.ai 社区，包含社区贡献的 MCP Server
+- **MCP Server** - MCP 官方注册表。被收录不代表经过安全审查。
+- **Skills** - GitHub 上的公开仓库
 
-数据每 3 天自动同步一次。
+Smithery 已于 2026-10-31 停止 API、托管连接、CLI/SDK 和账号服务，不再作为数据源。你已有的、依赖它的 MCP 配置会原样保留，并在 Library 里标注“服务已停用”；MCP Dock 不会自动改写或删除。
 
 ## 社区贡献
 
@@ -128,4 +128,3 @@ MCP Dock 支持两个数据源：
 ## 致谢
 
 - [Model Context Protocol](https://modelcontextprotocol.io/)
-- [Smithery.ai](https://smithery.ai/)

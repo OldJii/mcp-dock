@@ -400,10 +400,8 @@ ipcMain.handle('system:open-skills-directory', async (_, client: SkillClientType
 // 缓存键类型
 type CacheKey = 
   | 'official-index' 
-  | 'smithery-index' 
   | 'skills-index'
   | `official-detail-${string}`
-  | `smithery-detail-${string}`
   | `skills-detail-${string}`;
 
 // 获取缓存
@@ -442,7 +440,7 @@ ipcMain.handle('cache:clear', async () => {
 });
 
 // 按前缀清除缓存
-ipcMain.handle('cache:clear-by-prefix', async (_, prefix: 'official' | 'smithery' | 'skills') => {
+ipcMain.handle('cache:clear-by-prefix', async (_, prefix: 'official' | 'skills') => {
   return cacheManager.clearByPrefix(prefix);
 });
 

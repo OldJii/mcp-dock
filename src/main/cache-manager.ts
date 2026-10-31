@@ -53,10 +53,8 @@ interface CacheMeta {
  */
 type CacheKey = 
   | 'official-index' 
-  | 'smithery-index' 
   | 'skills-index'
   | `official-detail-${string}`
-  | `smithery-detail-${string}`
   | `skills-detail-${string}`;
 
 /**
@@ -379,7 +377,7 @@ export class CacheManager {
   /**
    * 清除指定类型的缓存
    */
-  async clearByPrefix(prefix: 'official' | 'smithery' | 'skills'): Promise<void> {
+  async clearByPrefix(prefix: 'official' | 'skills'): Promise<void> {
     // 清除内存缓存
     for (const key of this.memoryCache.keys()) {
       if (key.startsWith(prefix)) {

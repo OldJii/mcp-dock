@@ -5,7 +5,7 @@
  * 搜索范围：
  * - displayName: MCP 名称
  * - id: MCP ID（通常包含作者信息，如 "io.github.author/mcp-name"）
- * - author: 作者名（仅 Smithery 数据源有）
+ * - author: 作者名（目录条目提供时）
  */
 
 import Fuse from 'fuse.js';
@@ -16,7 +16,7 @@ const fuseOptions: Fuse.IFuseOptions<ServerListItem> = {
   keys: [
     { name: 'displayName', weight: 0.5 },  // MCP 名称
     { name: 'id', weight: 0.3 },           // ID（包含作者信息）
-    { name: 'author', weight: 0.2 },       // 作者名（仅 Smithery）
+    { name: 'author', weight: 0.2 },       // 作者名（条目提供时）
   ],
   threshold: 0.3, // 降低阈值，提高精确度
   includeScore: true,

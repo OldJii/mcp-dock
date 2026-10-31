@@ -5,7 +5,7 @@
  * It provides basic type definitions and stub implementations.
  *
  * The full version includes:
- * - Browsing 8,500+ MCP servers from Official Registry and Smithery
+ * - Browsing the MCP servers listed in the Official Registry
  * - Browsing 4,400+ AI Skills
  * - SWR caching with background revalidation
  *
@@ -19,7 +19,6 @@
  * and set the VITE_REGISTRY_API_URL environment variable.
  */
 
-export type DataSource = 'official' | 'smithery';
 export type ResourceType = 'mcp' | 'skills';
 
 // Base server list item - minimal fields for UI rendering
@@ -85,15 +84,7 @@ export interface SkillDetail extends SkillListItem {
 }
 
 // Type guards (always return false in community edition)
-export function isSmitheryListItem(_item: ServerListItem): boolean {
-  return false;
-}
-
 export function isOfficialListItem(_item: ServerListItem): boolean {
-  return false;
-}
-
-export function isSmitheryDetail(_detail: ServerDetail): boolean {
   return false;
 }
 
@@ -111,34 +102,34 @@ export function onDataUpdate(_key: string, _callback: (data: unknown) => void): 
 /**
  * Clear cached data
  */
-export async function clearCache(_source?: DataSource): Promise<void> {}
+export async function clearCache(): Promise<void> {}
 
 /**
  * Fetch server list - returns empty in community edition
  * To populate, connect your own registry backend via VITE_REGISTRY_API_URL
  */
-export async function fetchServerList(_source: DataSource): Promise<ServerListItem[]> {
+export async function fetchServerList(): Promise<ServerListItem[]> {
   return [];
 }
 
 /**
  * Force refresh server list
  */
-export async function forceRefreshServerList(_source: DataSource): Promise<ServerListItem[]> {
+export async function forceRefreshServerList(): Promise<ServerListItem[]> {
   return [];
 }
 
 /**
  * Fetch server detail - stub
  */
-export async function fetchServerDetail(_source: DataSource, _id: string): Promise<ServerDetail> {
+export async function fetchServerDetail(_id: string): Promise<ServerDetail> {
   throw new Error('Registry browsing is not available in the community edition. You can still add servers manually.');
 }
 
 /**
  * Check if server detail exists
  */
-export async function checkServerDetailExists(_source: DataSource, _id: string): Promise<boolean> {
+export async function checkServerDetailExists(_id: string): Promise<boolean> {
   return false;
 }
 

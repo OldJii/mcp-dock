@@ -1,6 +1,6 @@
 /**
  * MCP Server 详情页面 - 参考 Skill 详情页风格
- * 支持多数据源 (Official / Smithery)
+ * 数据来自 Official Registry
  * 布局：左侧信息 + README + 右侧操作区
  */
 
@@ -11,9 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { 
   fetchServerDetail, 
   fetchReadmeFromGitHub,
-  isSmitheryDetail, 
   isOfficialDetail,
-  type DataSource,
   type OfficialPackage,
   type OfficialRemote,
 } from '../api/registry';
@@ -22,7 +20,7 @@ import { useStore } from '../store/useStore';
 import Modal from '../components/Modal';
 import OfficialConfigForm from '../components/OfficialConfigForm';
 import ClientIcon from '../components/ClientIcon';
-import { BackIcon, ClockIcon, DownloadIcon, VerifiedIcon, GitHubIcon, ExternalLinkIcon, CheckIcon } from '../components/Icons';
+import { BackIcon, ClockIcon, GitHubIcon, ExternalLinkIcon, CheckIcon } from '../components/Icons';
 
 // 从仓库 URL 提取 GitHub 用户名
 function extractGitHubUsername(repoUrl: string | null | undefined): string | null {
@@ -77,7 +75,7 @@ function DefaultIcon({ name, repoUrl }: { name: string; repoUrl?: string | null 
 }
 
 export default function Detail() {
-  const { source, id } = useParams<{ source: DataSource; id: string }>();
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const { t } = useTranslation();
   const api = useElectronAPI();
@@ -97,13 +95,12 @@ export default function Detail() {
   const [isLoadingReadme, setIsLoadingReadme] = useState(false);
   const [iconError, setIconError] = useState(false);
 
-  const dataSource = (source || 'official') as DataSource;
   const decodedId = id ? decodeURIComponent(id) : '';
 
   // 获取服务器详情
   const { data: server, isLoading, error } = useQuery({
-    queryKey: ['serverDetail', dataSource, decodedId],
-    queryFn: () => fetchServerDetail(dataSource, decodedId),
+    queryKey: ['serverDetail', decodedId],
+    queryFn: () => fetchServerDetail(decodedId),
     enabled: !!decodedId,
     retry: 1,
   });
@@ -116,9 +113,7 @@ export default function Detail() {
   // 检查运行时
   useEffect(() => {
     if (server) {
-      if (isSmitheryDetail(server) && server.connection?.runtime) {
-        api.env.checkRuntime(server.connection.runtime).then(setRuntimeInfo);
-      } else if (isOfficialDetail(server) && server.packages.length > 0) {
+      if (isOfficialDetail(server) && server.packages.length > 0) {
         const pkg = server.packages[0];
         const runtime = pkg.runtimeHint === 'uvx' ? 'python' : 'node';
         api.env.checkRuntime(runtime).then(setRuntimeInfo);
@@ -353,9 +348,7 @@ export default function Detail() {
 
   // 获取运行时信息
   const getRuntime = () => {
-    if (isSmitheryDetail(server!)) {
-      return server!.connection?.runtime || 'node';
-    } else if (isOfficialDetail(server!)) {
+    if (isOfficialDetail(server!)) {
       if (selectedPackage?.runtimeHint === 'uvx') return 'python';
       if (selectedPackage?.runtimeHint === 'docker') return 'docker';
       return 'node';
@@ -372,9 +365,6 @@ export default function Detail() {
   };
 
   const runtimeAvailable = runtimeInfo?.available ?? false;
-  // Smithery 的安装流程（认证与托管方式）已变化，原有的 CLI 命令不再可靠，暂停新增安装。
-  // 这并不代表所有 `smithery run` 用法都已弃用；已有配置照常识别，仍可卸载。
-  const smitheryInstallPaused = !!server && isSmitheryDetail(server);
 
   if (isLoading) {
     return (
@@ -413,7 +403,7 @@ export default function Detail() {
         </button>
         <span className="hover:text-white cursor-pointer" onClick={() => navigate('/store')}>Store</span>
         <span>/</span>
-        <span className="hover:text-white cursor-pointer">{dataSource === 'official' ? 'Official' : 'Smithery'}</span>
+        <span className="hover:text-white cursor-pointer">Registry</span>
         <span>/</span>
         <span className="text-white">{server.displayName}</span>
       </div>
@@ -443,9 +433,6 @@ export default function Detail() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1">
                     <h1 className="text-2xl font-bold text-white">{server.displayName}</h1>
-                    {isSmitheryDetail(server) && server.verified && (
-                      <VerifiedIcon className="w-5 h-5 text-[#0a84ff]" />
-                    )}
                   </div>
                   <p className="text-[12px] text-[#636366] font-mono">{server.id}</p>
                 </div>
@@ -457,20 +444,6 @@ export default function Detail() {
 
               {/* 统计信息 - 与 Skill 详情页风格一致 */}
               <div className="flex items-center gap-4 text-[13px] text-[#98989d]">
-                {isSmitheryDetail(server) && (
-                  <>
-                    <span className="flex items-center gap-1">
-                      <DownloadIcon className="w-4 h-4" />
-                      {formatNumber(server.downloads || 0)} Downloads
-                    </span>
-                    {server.createdAt && (
-                      <span className="flex items-center gap-1">
-                        <ClockIcon className="w-4 h-4 text-[#636366]" />
-                        Created {formatDate(server.createdAt)}
-                      </span>
-                    )}
-                  </>
-                )}
                 {isOfficialDetail(server) && (
                   <>
                     {/* Stars */}
@@ -600,27 +573,6 @@ export default function Detail() {
               </>
             )}
 
-            {/* 功能列表 (Smithery 数据源) */}
-            {isSmitheryDetail(server) && server.capabilities && server.capabilities.length > 0 && (
-              <div className="card overflow-hidden mb-6">
-                <div className="px-4 py-3 border-b border-[#3a3a3c]">
-                  <h2 className="text-[13px] font-semibold text-white">
-                    {t('detail.capabilities')} ({server.capabilities.length})
-                  </h2>
-                </div>
-                {server.capabilities.map((cap, index) => (
-                  <div
-                    key={index}
-                    className={`px-4 py-3 ${index !== server.capabilities.length - 1 ? 'border-b border-[#3a3a3c]' : ''}`}
-                  >
-                    <h4 className="text-[12px] font-mono text-[#0a84ff] mb-0.5">{cap.name}</h4>
-                    <p className="text-[12px] text-[#636366]">{cap.description || t('detail.noToolDescription')}</p>
-                  </div>
-                ))}
-              </div>
-            )}
-
-
             {/* 远程服务器列表 */}
             {isOfficialDetail(server) && server.remotes && server.remotes.length > 0 && (
               <div className="card overflow-hidden">
@@ -663,18 +615,13 @@ export default function Detail() {
         <div className="w-[280px] flex-shrink-0 border-l border-[#3a3a3c] overflow-y-auto p-4">
           {/* 安装按钮 */}
           <div className="mb-4 space-y-2">
-            {runtimeAvailable && !smitheryInstallPaused && (
+            {runtimeAvailable && (
               <button
                 onClick={() => setShowConfigModal(true)}
                 className="w-full btn btn-primary text-[13px]"
               >
                 {installedClients.length > 0 ? t('detail.installMore') : t('detail.install')}
               </button>
-            )}
-            {smitheryInstallPaused && (
-              <p className="text-[11px] leading-relaxed text-[#98989d]">
-                {t('detail.smitheryInstallPaused')}
-              </p>
             )}
             {installedClients.length > 0 && (
               <button
@@ -757,40 +704,6 @@ export default function Detail() {
               </a>
             )}
             
-            {isSmitheryDetail(server) && server.links?.registry && (
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  api.system.openExternal(server.links.registry);
-                }}
-                className="flex items-center justify-between text-[12px] text-[#98989d] hover:text-[#0a84ff] transition-colors"
-              >
-                <span className="flex items-center gap-2">
-                  <GitHubIcon className="w-4 h-4" />
-                  Smithery Registry
-                </span>
-                <ExternalLinkIcon className="w-3.5 h-3.5" />
-              </a>
-            )}
-            
-            {isSmitheryDetail(server) && server.links?.homepage && (
-              <a
-                href="#"
-                onClick={(e) => {
-                  e.preventDefault();
-                  api.system.openExternal(server.links.homepage);
-                }}
-                className="flex items-center justify-between text-[12px] text-[#98989d] hover:text-[#0a84ff] transition-colors"
-              >
-                <span className="flex items-center gap-2">
-                  <ExternalLinkIcon className="w-4 h-4" />
-                  Homepage
-                </span>
-                <ExternalLinkIcon className="w-3.5 h-3.5" />
-              </a>
-            )}
-
             {isOfficialDetail(server) && server.websiteUrl && (
               <a
                 href="#"
@@ -845,19 +758,6 @@ export default function Detail() {
                       <span className="text-white">@{server.author}</span>
                     </div>
                   )}
-                </>
-              )}
-              
-              {isSmitheryDetail(server) && (
-                <>
-                  <div className="flex justify-between">
-                    <span className="text-[#636366]">Downloads</span>
-                    <span className="text-white">{formatNumber(server.downloads || 0)}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-[#636366]">Verified</span>
-                    <span className="text-white">{server.verified ? 'Yes' : 'No'}</span>
-                  </div>
                 </>
               )}
             </div>

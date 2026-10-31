@@ -36,13 +36,12 @@ export default function Store() {
   const {
     resourceType,
     setResourceType,
-    dataSource,
     searchQuery,
     setSearchQuery,
     currentPage,
     setCurrentPage,
     pageSize,
-    serverLists,
+    serverList,
     setServerList,
     skillsList,
     setSkillsList,
@@ -60,8 +59,8 @@ export default function Store() {
 
   // 获取 MCP 服务器列表
   const { data: serverData, isLoading: isLoadingServers, error: serverError, refetch: refetchServers } = useQuery({
-    queryKey: ['serverList', dataSource],
-    queryFn: () => fetchServerList(dataSource),
+    queryKey: ['serverList'],
+    queryFn: () => fetchServerList(),
     staleTime: 10 * 60 * 1000,
     enabled: resourceType === 'mcp',
   });
@@ -77,9 +76,9 @@ export default function Store() {
   // 更新 MCP 缓存
   useEffect(() => {
     if (serverData) {
-      setServerList(dataSource, serverData);
+      setServerList(serverData);
     }
-  }, [serverData, dataSource, setServerList]);
+  }, [serverData, setServerList]);
 
   // 更新 Skills 缓存
   useEffect(() => {
@@ -111,10 +110,10 @@ export default function Store() {
   // 搜索和分页 - MCP
   const mcpResult = useMemo(() => {
     if (resourceType !== 'mcp') return { items: [], totalPages: 0, totalItems: 0, startIndex: 0, endIndex: 0 };
-    const list = serverData || serverLists[dataSource] || [];
+    const list = serverData || serverList || [];
     const filtered = searchServers(list, searchQuery);
     return paginateServers(filtered, currentPage, pageSize);
-  }, [resourceType, serverData, serverLists, dataSource, searchQuery, currentPage, pageSize]);
+  }, [resourceType, serverData, serverList, searchQuery, currentPage, pageSize]);
 
   // 搜索和分页 - Skills
   const skillsResult = useMemo(() => {
@@ -175,8 +174,8 @@ export default function Store() {
     const startTime = Date.now();
     try {
       if (resourceType === 'mcp') {
-        const data = await forceRefreshServerList(dataSource);
-        setServerList(dataSource, data);
+        const data = await forceRefreshServerList();
+        setServerList(data);
       } else {
         const data = await forceRefreshSkillsList();
         setSkillsList(data);
@@ -189,13 +188,11 @@ export default function Store() {
     } finally {
       setIsForceRefreshing(false);
     }
-  }, [resourceType, dataSource, setServerList, setSkillsList, t]);
+  }, [resourceType, setServerList, setSkillsList, t]);
 
   // 获取 attribution 文本
   const attributionText = resourceType === 'mcp'
-    ? (dataSource === 'official' 
-        ? t('store.attributionOfficial')
-        : t('store.attributionSmithery'))
+    ? t('store.attributionOfficial')
     : t('store.attributionSkills') || 'Data from GitHub repositories';
 
   return (
@@ -237,14 +234,8 @@ export default function Store() {
           
           {/* 数据源标签 - 仅 MCP 显示 */}
           {resourceType === 'mcp' && (
-            <span className={`
-              px-2 py-0.5 rounded text-[10px] font-medium
-              ${dataSource === 'official' 
-                ? 'bg-[#0a84ff]/15 text-[#0a84ff]' 
-                : 'bg-[#ff9f0a]/15 text-[#ff9f0a]'
-              }
-            `}>
-              {dataSource === 'official' ? 'Official' : 'Smithery'}
+            <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-[#0a84ff]/15 text-[#0a84ff]">
+              Official
             </span>
           )}
 
@@ -382,7 +373,6 @@ export default function Store() {
                   <ServerCard
                     key={`${currentPage}-${index}-${server.id}`}
                     server={server}
-                    dataSource={dataSource}
                     isInstalled={installedServerIds.has(server.id)}
                   />
                 ))

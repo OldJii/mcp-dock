@@ -126,10 +126,8 @@ export interface AllServersResult {
 // 缓存相关类型
 export type CacheKey = 
   | 'official-index' 
-  | 'smithery-index' 
   | 'skills-index'
   | `official-detail-${string}`
-  | `smithery-detail-${string}`
   | `skills-detail-${string}`;
 
 export interface CacheEntry<T = unknown> {
@@ -306,7 +304,7 @@ const api = {
       ipcRenderer.invoke('cache:delete', key),
     clear: (): Promise<void> =>
       ipcRenderer.invoke('cache:clear'),
-    clearByPrefix: (prefix: 'official' | 'smithery' | 'skills'): Promise<void> =>
+    clearByPrefix: (prefix: 'official' | 'skills'): Promise<void> =>
       ipcRenderer.invoke('cache:clear-by-prefix', prefix),
     getStats: (): Promise<CacheStats> =>
       ipcRenderer.invoke('cache:get-stats'),

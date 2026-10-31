@@ -25,7 +25,7 @@
 
 ## Features
 
-- **MCP Store** - Browse and search MCP Servers from the Official Registry and Smithery (full version)
+- **MCP Store** - Browse and search the MCP Servers listed in the Official Registry (full version)
 - **Skills Store** - Discover AI Skills for Cursor, Claude Code, Gemini CLI, Codex CLI, and Opencode (full version)
 - **One-Click Install** - Auto-configure to Cursor, VS Code, Claude Code, Gemini CLI, Codex CLI, Windsurf, Zed, TRAE, TRAE CN, Kiro, Opencode, JetBrains, Antigravity, OpenClaw
 - **Agent Skills Standard** - Support for `~/.agents/skills/` unified standard ([skills.sh](https://skills.sh/))
@@ -76,12 +76,12 @@
 
 ## Data Sources
 
-MCP Dock supports two data sources:
+The full version reads two catalogs, refreshed every 14 days:
 
-- **Official** - MCP Official Registry with verified servers
-- **Smithery** - Smithery.ai community with community-contributed servers
+- **MCP Servers** - the MCP Official Registry. Being listed there is not a security review.
+- **Skills** - public GitHub repositories
 
-Data syncs automatically every 3 days.
+Smithery shut down its API, hosted connections, CLI/SDK and accounts on 2026-10-31, so it is no longer a data source. MCP configs you already have that depend on it are kept as they are and marked "Service retired" in the Library; MCP Dock never rewrites or removes them automatically.
 
 ## Community Contributions
 
@@ -190,4 +190,3 @@ MIT License - See [LICENSE](./LICENSE) for details.
 ## Credits
 
 - [Model Context Protocol](https://modelcontextprotocol.io/)
-- [Smithery.ai](https://smithery.ai/)

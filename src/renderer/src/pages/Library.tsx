@@ -13,52 +13,31 @@ import ClientIcon from '../components/ClientIcon';
 import AddServerModal from '../components/AddServerModal';
 import ImportSkillModal from '../components/ImportSkillModal';
 import { toast } from '../components/Toast';
-import { fetchServerList, type ServerListItem, type DataSource } from '../api/registry';
+import { fetchServerList, type ServerListItem } from '../api/registry';
+import { isRetiredServerConfig } from '../lib/retired-services';
 
 interface InstalledServer {
   id: string;
   config: McpServerConfig;
   clients: ClientType[];
   isMcpDock: boolean;
-  source: DataSource;
 }
 
-// 检查是否是 MCP Dock 安装的服务器
-function isMcpDockInstalled(config: McpServerConfig, serverId: string, serverLists: Record<DataSource, ServerListItem[]>): { isMcpDock: boolean; source: DataSource } {
+// 检查是否是 MCP Dock 安装的服务器：在 Registry 里，且是 MCP Dock 写入的连接方式
+function isMcpDockInstalled(config: McpServerConfig, serverId: string, serverList: ServerListItem[]): boolean {
+  if (!serverList.some(s => s.id === serverId)) return false;
+
   const args = config.args || [];
-  const argsStr = args.join(' ');
   const command = config.command || '';
-  
+
   const configAny = config as Record<string, unknown>;
   const isRemote = 'url' in configAny && typeof configAny.url === 'string';
-  
+
   const isNpx = command.endsWith('npx') || command.includes('/npx');
   const isUvx = command.endsWith('uvx') || command.includes('/uvx');
   const isDocker = command === 'docker' || command.endsWith('/docker');
-  
-  if (argsStr.includes('@smithery/cli') || argsStr.includes('smithery-cli')) {
-    return { isMcpDock: true, source: 'smithery' };
-  }
-  
-  const officialList = serverLists.official || [];
-  const smitheryList = serverLists.smithery || [];
-  
-  const isInOfficial = officialList.some(s => s.id === serverId);
-  const isInSmithery = smitheryList.some(s => s.id === serverId);
-  
-  if (isInOfficial) {
-    if (isRemote) return { isMcpDock: true, source: 'official' };
-    if (isNpx && args.includes('-y')) return { isMcpDock: true, source: 'official' };
-    if (isUvx) return { isMcpDock: true, source: 'official' };
-    if (isDocker) return { isMcpDock: true, source: 'official' };
-    return { isMcpDock: false, source: 'official' };
-  }
-  
-  if (isInSmithery) {
-    return { isMcpDock: false, source: 'smithery' };
-  }
-  
-  return { isMcpDock: false, source: 'official' };
+
+  return isRemote || (isNpx && args.includes('-y')) || isUvx || isDocker;
 }
 
 // 从仓库 URL 提取 GitHub 用户名
@@ -164,18 +143,16 @@ export default function Library() {
   const navigate = useNavigate();
   const api = useElectronAPI();
   
-  const { setInstalledServerIds, removeInstalledServerId, serverLists, setServerList } = useStore();
+  const { setInstalledServerIds, removeInstalledServerId, serverList: registryList, setServerList } = useStore();
   
   // 创建服务器信息映射
   const serverInfoMap = useMemo(() => {
     const map = new Map<string, ServerListItem>();
-    Object.values(serverLists).forEach(list => {
-      list.forEach(server => {
-        map.set(server.id, server);
-      });
+    registryList.forEach(server => {
+      map.set(server.id, server);
     });
     return map;
-  }, [serverLists]);
+  }, [registryList]);
   
   const [servers, setServers] = useState<InstalledServer[]>([]);
   const [skills, setSkills] = useState<InstalledSkill[]>([]);
@@ -195,26 +172,17 @@ export default function Library() {
 
   // 加载服务器列表
   useEffect(() => {
-    const loadServerLists = async () => {
-      if (serverLists.official.length === 0) {
+    const loadServerList = async () => {
+      if (registryList.length === 0) {
         try {
-          const officialList = await fetchServerList('official');
-          setServerList('official', officialList);
+          setServerList(await fetchServerList());
         } catch (e) {
-          console.error('Failed to load official server list:', e);
-        }
-      }
-      if (serverLists.smithery.length === 0) {
-        try {
-          const smitheryList = await fetchServerList('smithery');
-          setServerList('smithery', smitheryList);
-        } catch (e) {
-          console.error('Failed to load smithery server list:', e);
+          console.error('Failed to load server list:', e);
         }
       }
     };
-    loadServerLists();
-  }, [serverLists.official.length, serverLists.smithery.length, setServerList]);
+    loadServerList();
+  }, [registryList.length, setServerList]);
 
   // 加载数据
   useEffect(() => {
@@ -234,8 +202,8 @@ export default function Library() {
       
       // 处理 MCP Servers
       const serverList = Object.entries(serverMap).map(([id, { config, clients }]) => {
-        const { isMcpDock, source } = isMcpDockInstalled(config, id, serverLists);
-        return { id, config, clients, isMcpDock, source };
+        const isMcpDock = isMcpDockInstalled(config, id, registryList);
+        return { id, config, clients, isMcpDock };
       });
       setServers(serverList);
       setInstalledServerIds(Object.keys(serverMap));
@@ -428,7 +396,7 @@ export default function Library() {
   // 点击服务器
   const handleServerClick = (server: InstalledServer) => {
     if (server.isMcpDock) {
-      navigate(`/detail/${server.source}/${encodeURIComponent(server.id)}`);
+      navigate(`/detail/official/${encodeURIComponent(server.id)}`);
     }
   };
 
@@ -579,6 +547,9 @@ export default function Library() {
                             </span>
                           ))}
                         </div>
+                        {isRetiredServerConfig(server.config) && (
+                          <p className="text-[11px] text-[#ff9f0a] mt-1">{t('installed.retiredNote')}</p>
+                        )}
                       </div>
 
                       {/* 操作按钮区域 - MCP Dock 标志在最左边 */}
@@ -588,6 +559,9 @@ export default function Library() {
                           <span className="tag tag-info">MCP Dock</span>
                         ) : (
                           <span className="tag tag-default">{t('installed.external') || 'External'}</span>
+                        )}
+                        {isRetiredServerConfig(server.config) && (
+                          <span className="tag tag-warning">{t('installed.retired')}</span>
                         )}
                         
                         {/* 操作按钮 */}

@@ -5,7 +5,7 @@
 
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { ServerListItem, DataSource, SkillListItem, ResourceType } from '../api/registry';
+import type { ServerListItem, SkillListItem, ResourceType } from '../api/registry';
 
 // Inspector 配置状态
 interface InspectorState {
@@ -19,10 +19,6 @@ interface StoreState {
   resourceType: ResourceType;
   setResourceType: (type: ResourceType) => void;
   
-  // 数据源
-  dataSource: DataSource;
-  setDataSource: (source: DataSource) => void;
-  
   // 搜索
   searchQuery: string;
   setSearchQuery: (query: string) => void;
@@ -32,9 +28,9 @@ interface StoreState {
   pageSize: number;
   setCurrentPage: (page: number) => void;
   
-  // 服务器列表缓存 (按数据源分开)
-  serverLists: Record<DataSource, ServerListItem[]>;
-  setServerList: (source: DataSource, list: ServerListItem[]) => void;
+  // 服务器列表缓存
+  serverList: ServerListItem[];
+  setServerList: (list: ServerListItem[]) => void;
   
   // Skills 列表缓存
   skillsList: SkillListItem[];
@@ -59,12 +55,10 @@ interface StoreState {
   // 重置分页
   resetPagination: () => void;
   
-  // 获取当前数据源的服务器列表
+  // 获取服务器列表
   getCurrentServerList: () => ServerListItem[];
 }
 
-// 有效的数据源值
-const VALID_DATA_SOURCES = ['official', 'smithery'] as const;
 const VALID_RESOURCE_TYPES = ['mcp', 'skills'] as const;
 
 export const useStore = create<StoreState>()(
@@ -78,14 +72,6 @@ export const useStore = create<StoreState>()(
         searchQuery: '' 
       }),
       
-      // 数据源 - 默认使用 Official
-      dataSource: 'official',
-      setDataSource: (source) => set({ 
-        dataSource: source, 
-        currentPage: 1, 
-        searchQuery: '' 
-      }),
-      
       // 搜索
       searchQuery: '',
       setSearchQuery: (query) => set({ searchQuery: query, currentPage: 1 }),
@@ -95,17 +81,9 @@ export const useStore = create<StoreState>()(
       pageSize: 20,
       setCurrentPage: (page) => set({ currentPage: page }),
       
-      // 服务器列表 (按数据源分开)
-      serverLists: {
-        official: [],
-        smithery: [],
-      },
-      setServerList: (source, list) => set((state) => ({
-        serverLists: {
-          ...state.serverLists,
-          [source]: list,
-        },
-      })),
+      // 服务器列表
+      serverList: [],
+      setServerList: (list) => set({ serverList: list }),
       
       // Skills 列表
       skillsList: [],
@@ -155,17 +133,13 @@ export const useStore = create<StoreState>()(
       // 重置分页
       resetPagination: () => set({ currentPage: 1, searchQuery: '' }),
       
-      // 获取当前数据源的服务器列表
-      getCurrentServerList: () => {
-        const state = get();
-        return state.serverLists[state.dataSource] || [];
-      },
+      // 获取服务器列表
+      getCurrentServerList: () => get().serverList,
     }),
     {
       name: 'mcp-dock-store',
       partialize: (state) => ({
-        // 持久化数据源选择、资源类型和页面大小
-        dataSource: state.dataSource,
+        // 只持久化资源类型和页面大小；早期版本保存的数据源选择不再读取
         resourceType: state.resourceType,
         pageSize: state.pageSize,
       }),
@@ -174,10 +148,6 @@ export const useStore = create<StoreState>()(
         const persisted = persistedState as Partial<StoreState> | undefined;
         return {
           ...currentState,
-          // 验证 dataSource，无效则使用默认值
-          dataSource: persisted?.dataSource && VALID_DATA_SOURCES.includes(persisted.dataSource as any)
-            ? persisted.dataSource
-            : 'official',
           // 验证 resourceType，无效则使用默认值  
           resourceType: persisted?.resourceType && VALID_RESOURCE_TYPES.includes(persisted.resourceType as any)
             ? persisted.resourceType

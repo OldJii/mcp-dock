@@ -1,19 +1,18 @@
 /**
  * 服务器卡片组件 - 网格布局卡片
- * 支持多数据源 (Official / Smithery)
+ * 数据来自 Official Registry
  * 紧凑高度设计
  */
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import type { ServerListItem, DataSource, OfficialListItem } from '../api/registry';
-import { isSmitheryListItem, isOfficialListItem } from '../api/registry';
-import { DownloadIcon, VerifiedIcon, ClockIcon } from './Icons';
+import type { ServerListItem, OfficialListItem } from '../api/registry';
+import { isOfficialListItem } from '../api/registry';
+import { ClockIcon } from './Icons';
 
 interface ServerCardProps {
   server: ServerListItem;
-  dataSource: DataSource;
   isInstalled?: boolean;
 }
 
@@ -65,7 +64,7 @@ function ServerIcon({ server }: { server: ServerListItem }) {
   const [imgError, setImgError] = useState(false);
   const [avatarError, setAvatarError] = useState(false);
   
-  // 获取仓库 URL (仅 Official 数据源)
+  // 获取仓库 URL
   const repoUrl = isOfficialListItem(server) ? (server as OfficialListItem).repository?.url : null;
   const githubUsername = extractGitHubUsername(repoUrl);
   
@@ -113,15 +112,15 @@ function ServerIcon({ server }: { server: ServerListItem }) {
   );
 }
 
-export default function ServerCard({ server, dataSource, isInstalled }: ServerCardProps) {
+export default function ServerCard({ server, isInstalled }: ServerCardProps) {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/detail/${dataSource}/${encodeURIComponent(server.id)}`);
+    navigate(`/detail/official/${encodeURIComponent(server.id)}`);
   };
 
-  // 获取更新时间（Official 数据源）
+  // 获取更新时间
   const lastCommitAt = isOfficialListItem(server) ? (server as any).lastCommitAt : null;
   const updatedAt = isOfficialListItem(server) ? (server as any).updatedAt : null;
   const updateTime = lastCommitAt || updatedAt;
@@ -159,7 +158,6 @@ export default function ServerCard({ server, dataSource, isInstalled }: ServerCa
       {/* 底部信息 - 紧凑设计 */}
       <div className="flex items-center justify-between mt-1.5 pt-1.5 border-t border-[#3a3a3c]/50">
         {isOfficialListItem(server) ? (
-          // Official 数据源
           <>
             <div className="flex items-center gap-2 text-[10px] text-[#636366]">
               <span className="font-mono">v{server.version}</span>
@@ -185,17 +183,6 @@ export default function ServerCard({ server, dataSource, isInstalled }: ServerCa
                 </span>
               )}
             </div>
-          </>
-        ) : isSmitheryListItem(server) ? (
-          // Smithery 数据源
-          <>
-            <span className="text-[10px] text-[#636366] flex items-center gap-1">
-              <DownloadIcon className="w-3 h-3" />
-              {formatNumber(server.downloads)}
-            </span>
-            {server.verified && (
-              <VerifiedIcon className="w-3.5 h-3.5 text-[#0a84ff]" />
-            )}
           </>
         ) : null}
       </div>

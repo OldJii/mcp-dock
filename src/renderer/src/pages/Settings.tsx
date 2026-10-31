@@ -5,8 +5,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useElectronAPI, type AllRuntimes, type ClientInfo, type SkillClientType } from '../lib/electron';
-import { useStore } from '../store/useStore';
-import { clearCache, type DataSource } from '../api/registry';
 import ClientIcon from '../components/ClientIcon';
 import RuntimeIcon from '../components/RuntimeIcon';
 import Modal from '../components/Modal';
@@ -16,8 +14,6 @@ import mcpDockIcon from '../../assets/icons/mcp-dock.png';
 export default function Settings() {
   const { t, i18n } = useTranslation();
   const api = useElectronAPI();
-  
-  const { dataSource, setDataSource } = useStore();
   
   const [runtimes, setRuntimes] = useState<AllRuntimes | null>(null);
   const [clients, setClients] = useState<ClientInfo[]>([]);
@@ -86,12 +82,6 @@ export default function Settings() {
     }
   };
 
-  const handleDataSourceChange = (source: DataSource) => {
-    setDataSource(source);
-    // 清除缓存以便重新加载数据
-    clearCache();
-  };
-
   const handleLanguageChange = (lang: string) => {
     i18n.changeLanguage(lang);
     localStorage.setItem('language', lang);
@@ -140,88 +130,6 @@ export default function Settings() {
       {/* 内容 */}
       <div className="flex-1 overflow-y-auto">
         <div className="p-4 space-y-4">
-          {/* 数据源设置 */}
-          <div className="card p-4">
-            <h2 className="text-[13px] font-semibold text-white mb-1">
-              {t('settings.dataSource')}
-            </h2>
-            <p className="text-[12px] text-[#98989d] mb-3">
-              {t('settings.dataSourceDesc')}
-            </p>
-            
-            <div className="space-y-2">
-              <button
-                onClick={() => handleDataSourceChange('official')}
-                className={`
-                  w-full flex items-center gap-3 px-3 py-3 rounded-md text-left transition-colors
-                  ${dataSource === 'official'
-                    ? 'bg-[#0a84ff]/10 border border-[#0a84ff]/30'
-                    : 'bg-[#3a3a3c] border border-transparent hover:border-[#636366]'
-                  }
-                `}
-              >
-                <div className={`
-                  w-10 h-10 rounded-lg flex items-center justify-center
-                  ${dataSource === 'official' ? 'bg-[#0a84ff]' : 'bg-[#636366]'}
-                `}>
-                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
-                  </svg>
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className={`text-[13px] font-medium ${dataSource === 'official' ? 'text-[#0a84ff]' : 'text-white'}`}>
-                      {t('settings.official')}
-                    </span>
-                    {dataSource === 'official' && (
-                      <svg className="w-4 h-4 text-[#0a84ff]" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    )}
-                  </div>
-                  <p className="text-[11px] text-[#636366] mt-0.5">
-                    {t('settings.officialDesc')}
-                  </p>
-                </div>
-              </button>
-              
-              <button
-                onClick={() => handleDataSourceChange('smithery')}
-                className={`
-                  w-full flex items-center gap-3 px-3 py-3 rounded-md text-left transition-colors
-                  ${dataSource === 'smithery'
-                    ? 'bg-[#0a84ff]/10 border border-[#0a84ff]/30'
-                    : 'bg-[#3a3a3c] border border-transparent hover:border-[#636366]'
-                  }
-                `}
-              >
-                <div className={`
-                  w-10 h-10 rounded-lg flex items-center justify-center
-                  ${dataSource === 'smithery' ? 'bg-[#0a84ff]' : 'bg-[#636366]'}
-                `}>
-                  <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
-                  </svg>
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className={`text-[13px] font-medium ${dataSource === 'smithery' ? 'text-[#0a84ff]' : 'text-white'}`}>
-                      {t('settings.smithery')}
-                    </span>
-                    {dataSource === 'smithery' && (
-                      <svg className="w-4 h-4 text-[#0a84ff]" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                      </svg>
-                    )}
-                  </div>
-                  <p className="text-[11px] text-[#636366] mt-0.5">
-                    {t('settings.smitheryDesc')}
-                  </p>
-                </div>
-              </button>
-            </div>
-          </div>
-
           {/* 语言设置 */}
           <div className="card p-4">
             <h2 className="text-[13px] font-semibold text-white mb-1">
