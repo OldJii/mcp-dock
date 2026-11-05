@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "https://raw.githubusercontent.com/today-fo/mcp-dock/main/schemas/server.schema.json",
+  "$id": "https://raw.githubusercontent.com/OldJii/mcp-dock/main/schemas/server.schema.json",
   "title": "MCP Server Schema",
   "description": "Schema for community-contributed MCP Server definitions, compatible with official mcp-publisher specification",
   "type": "object",
