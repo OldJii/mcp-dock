@@ -1,7 +1,7 @@
 # MCP Dock
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/OldJii/mcp-dock/main/assets/icon.png" width="128" height="128" alt="MCP Dock">
+  <img src="https://raw.githubusercontent.com/folay-git/mcp-dock/main/assets/icon.png" width="128" height="128" alt="MCP Dock">
 </p>
 
 <p align="center">
@@ -37,17 +37,17 @@
 
 ## 下载安装
 
-**最新版本：[v1.4.1](https://github.com/OldJii/mcp-dock/releases/latest)。** 安装说明和当前下载状态见[官方网站](https://mcp.folay.top)。
+**最新版本：[v1.4.1](https://github.com/folay-git/mcp-dock/releases/latest)。** 安装说明和当前下载状态见[官方网站](https://mcp.folay.top)。
 
 | 平台 | 下载 |
 |------|------|
-| macOS（Apple 芯片） | [MCP.Dock-1.4.1-arm64.dmg](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.4.1-arm64.dmg) |
-| macOS（Intel） | [MCP.Dock-1.4.1.dmg](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.4.1.dmg) |
-| Windows | [安装版](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.4.1.exe) · [便携版](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.1.4.1.exe) |
-| Linux（x64） | [AppImage](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.4.1.AppImage) · [.deb](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.4.1_amd64.deb) |
-| Linux（ARM64） | [AppImage](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.4.1-arm64.AppImage) · [.deb](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.4.1_arm64.deb) |
+| macOS（Apple 芯片） | [MCP.Dock-1.4.1-arm64.dmg](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock-1.4.1-arm64.dmg) |
+| macOS（Intel） | [MCP.Dock-1.4.1.dmg](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock-1.4.1.dmg) |
+| Windows | [安装版](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.4.1.exe) · [便携版](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock.1.4.1.exe) |
+| Linux（x64） | [AppImage](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock-1.4.1.AppImage) · [.deb](https://github.com/folay-git/mcp-dock/releases/latest/download/mcp-dock_1.4.1_amd64.deb) |
+| Linux（ARM64） | [AppImage](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock-1.4.1-arm64.AppImage) · [.deb](https://github.com/folay-git/mcp-dock/releases/latest/download/mcp-dock_1.4.1_arm64.deb) |
 
-Homebrew（macOS）：`brew install --cask OldJii/tap/mcp-dock`
+Homebrew（macOS）：`brew install --cask folay-git/tap/mcp-dock`
 
 macOS 版本使用 ad-hoc 签名，**未经 Apple 公证**；Windows 版本**未做代码签名**，首次打开时系统可能拦截或提示。详见[安装指南](https://mcp.folay.top/guides/install)。
 
