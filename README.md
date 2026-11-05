@@ -1,7 +1,7 @@
 # MCP Dock
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/today-fo/mcp-dock/main/assets/icon.png" width="128" height="128" alt="MCP Dock">
+  <img src="https://raw.githubusercontent.com/OldJii/mcp-dock/main/assets/icon.png" width="128" height="128" alt="MCP Dock">
 </p>
 
 <p align="center">
@@ -37,17 +37,17 @@
 
 ## Download
 
-**Latest release: [v1.4.0](https://github.com/today-fo/mcp-dock/releases/latest).** Install notes and the current download status are on the [official website](https://mcp.folay.top).
+**Latest release: [v1.4.1](https://github.com/OldJii/mcp-dock/releases/latest).** Install notes and the current download status are on the [official website](https://mcp.folay.top).
 
 | Platform | Download |
 |----------|----------|
-| macOS (Apple Silicon) | [MCP.Dock-1.4.0-arm64.dmg](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.4.0-arm64.dmg) |
-| macOS (Intel) | [MCP.Dock-1.4.0.dmg](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.4.0.dmg) |
-| Windows | [Installer](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.4.0.exe) · [Portable](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock.1.4.0.exe) |
-| Linux (x64) | [AppImage](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.4.0.AppImage) · [.deb](https://github.com/today-fo/mcp-dock/releases/latest/download/mcp-dock_1.4.0_amd64.deb) |
-| Linux (ARM64) | [AppImage](https://github.com/today-fo/mcp-dock/releases/latest/download/MCP.Dock-1.4.0-arm64.AppImage) · [.deb](https://github.com/today-fo/mcp-dock/releases/latest/download/mcp-dock_1.4.0_arm64.deb) |
+| macOS (Apple Silicon) | [MCP.Dock-1.4.1-arm64.dmg](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.4.1-arm64.dmg) |
+| macOS (Intel) | [MCP.Dock-1.4.1.dmg](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.4.1.dmg) |
+| Windows | [Installer](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.4.1.exe) · [Portable](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock.1.4.1.exe) |
+| Linux (x64) | [AppImage](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.4.1.AppImage) · [.deb](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.4.1_amd64.deb) |
+| Linux (ARM64) | [AppImage](https://github.com/OldJii/mcp-dock/releases/latest/download/MCP.Dock-1.4.1-arm64.AppImage) · [.deb](https://github.com/OldJii/mcp-dock/releases/latest/download/mcp-dock_1.4.1_arm64.deb) |
 
-Homebrew (macOS): `brew install --cask today-fo/tap/mcp-dock`
+Homebrew (macOS): `brew install --cask OldJii/tap/mcp-dock`
 
 The macOS builds are ad-hoc signed and **not notarized by Apple**, and the Windows builds are **not code-signed**, so the system may block or warn on first launch. See the [install guide](https://mcp.folay.top/guides/install).
 
