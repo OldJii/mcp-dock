@@ -37,15 +37,15 @@
 
 ## 下载安装
 
-**最新版本：[v1.4.1](https://github.com/folay-git/mcp-dock/releases/latest)。** 安装说明和当前下载状态见[官方网站](https://mcp.folay.top)。
+**最新版本：[v1.4.2](https://github.com/folay-git/mcp-dock/releases/latest)。** 安装说明和当前下载状态见[官方网站](https://mcp.folay.top)。
 
 | 平台 | 下载 |
 |------|------|
-| macOS（Apple 芯片） | [MCP.Dock-1.4.1-arm64.dmg](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock-1.4.1-arm64.dmg) |
-| macOS（Intel） | [MCP.Dock-1.4.1.dmg](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock-1.4.1.dmg) |
-| Windows | [安装版](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.4.1.exe) · [便携版](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock.1.4.1.exe) |
-| Linux（x64） | [AppImage](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock-1.4.1.AppImage) · [.deb](https://github.com/folay-git/mcp-dock/releases/latest/download/mcp-dock_1.4.1_amd64.deb) |
-| Linux（ARM64） | [AppImage](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock-1.4.1-arm64.AppImage) · [.deb](https://github.com/folay-git/mcp-dock/releases/latest/download/mcp-dock_1.4.1_arm64.deb) |
+| macOS（Apple 芯片） | [MCP.Dock-1.4.2-arm64.dmg](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock-1.4.2-arm64.dmg) |
+| macOS（Intel） | [MCP.Dock-1.4.2.dmg](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock-1.4.2.dmg) |
+| Windows | [安装版](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock.Setup.1.4.2.exe) · [便携版](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock.1.4.2.exe) |
+| Linux（x64） | [AppImage](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock-1.4.2.AppImage) · [.deb](https://github.com/folay-git/mcp-dock/releases/latest/download/mcp-dock_1.4.2_amd64.deb) |
+| Linux（ARM64） | [AppImage](https://github.com/folay-git/mcp-dock/releases/latest/download/MCP.Dock-1.4.2-arm64.AppImage) · [.deb](https://github.com/folay-git/mcp-dock/releases/latest/download/mcp-dock_1.4.2_arm64.deb) |
 
 Homebrew（macOS）：`brew install --cask folay-git/tap/mcp-dock`
 
